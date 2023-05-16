@@ -1,9 +1,19 @@
-build-job:
-  stage: build
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
+include:
+  - project: "mmc-ch/mimacom-development/ci-templates"
+    file: "/templates/kaniko.gitlab-ci.yml"
+    ref: "v8.1"
+  - project: "mmc-ch/mimacom-development/ci-templates"
+    file: "/templates/kubectl.gitlab-ci.yml"
+    ref: "v8.1"
+  - project: "mmc-ch/mimacom-development/ci-templates"
+    file: "/templates/node.gitlab-ci.yml"
+    ref: "v8.1"
+  - local: ".gitlab/ci/.build.yml"
 
-test-job1:
-  stage: test
-  script:
-    - echo "This job tests something"
+variables:
+  VERSION: "1.0"
+
+stages:
+  - build
+  - test
+  - deploy

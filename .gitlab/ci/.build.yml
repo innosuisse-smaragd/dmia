@@ -1,0 +1,7 @@
+fe:build:
+  stage: build
+  extends:
+    - .npm-command
+  variables:
+    NPM_CONTEXT_DIR: .
+    NPM_COMMAND: run build
