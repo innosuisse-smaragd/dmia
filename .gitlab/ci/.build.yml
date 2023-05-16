@@ -1,7 +1,8 @@
 fe:build:
   stage: build
   extends:
-    - .npm-command
+    - .npm-ci
   variables:
     NPM_CONTEXT_DIR: .
-    NPM_COMMAND: run build
+  after_script:
+    - npm run build
