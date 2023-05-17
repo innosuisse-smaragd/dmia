@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build && move build dist",
+    "build": "strapi build && mv build dist || move build dist",
     "strapi": "strapi"
   },
   "devDependencies": {},
