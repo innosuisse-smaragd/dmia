@@ -5,7 +5,7 @@ ARG UI_DIST
 
 # labels
 LABEL org.label-schema.vendor="mimacom ag"
-LABEL org.label-schema.name="mima-starter-ui"
+LABEL org.label-schema.name="Dmia"
 LABEL org.label-schema.version="${BUILD_VERSION}"
 
 RUN echo "---------- BEFORE MKDIR /APP ----------"

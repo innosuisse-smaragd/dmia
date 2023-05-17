@@ -1,7 +1,7 @@
 .version_script: &version_script
   - export BUILD_VERSION=$(if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then echo ${VERSION}-${CI_PIPELINE_IID}; else echo ${VERSION}-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}; fi)
 
-fe:build:
+apps:build:
   stage: build
   extends:
     - .npm-ci
@@ -26,7 +26,24 @@ fe:docker:
     - export KANIKO_OPTS="--build-arg BUILD_VERSION=${BUILD_VERSION}"
     - export IMAGE_TAG=$BUILD_VERSION
   needs:
-    - job: fe:build
+    - job: apps:build
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
     - if: $CI_MERGE_REQUEST_ID
+
+  be:docker:
+    stage: build
+    extends:
+      - .kaniko-build-image-gitlab
+    variables:
+      IMAGE_NAME: ${CI_REGISTRY}/${CI_PROJECT_PATH}/apps/frontend
+      DOCKER_BUILD_CONTEXT_PATH: apps/frontend
+    before_script:
+      - *version_script
+      - export KANIKO_OPTS="--build-arg BUILD_VERSION=${BUILD_VERSION}"
+      - export IMAGE_TAG=$BUILD_VERSION
+    needs:
+      - job: apps:build
+    rules:
+      - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      - if: $CI_MERGE_REQUEST_ID
