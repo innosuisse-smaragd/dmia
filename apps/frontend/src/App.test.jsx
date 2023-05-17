@@ -33,5 +33,3 @@ describe("App Component", () => {
     expect(title).toHaveTextContent("Mocked test");
   });
 });
-
-build deploy test

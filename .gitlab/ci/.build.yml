@@ -6,3 +6,7 @@ fe:build:
     NPM_CONTEXT_DIR: .
   after_script:
     - npm run build
+  artifacts:
+    paths:
+      - apps/backend/build
+      - apps/frontend/dist

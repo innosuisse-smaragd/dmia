@@ -7,7 +7,6 @@ function App() {
 
   const fetchTests = async () => {
     const apiKey = import.meta.env.VITE_STRAPI_API_KEY;
-
     const { data } = await axios.get("http://localhost:1337/api/tests", {
       headers: {
         Authorization: `bearer ${apiKey}`,
