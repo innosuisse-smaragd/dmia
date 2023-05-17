@@ -19,8 +19,8 @@ fe:docker:
   extends:
     - .kaniko-build-image-gitlab
   variables:
-    IMAGE_NAME: ${CI_REGISTRY}/${CI_PROJECT_PATH}/dmia
-    DOCKER_BUILD_CONTEXT_PATH: dmia
+    IMAGE_NAME: ${CI_REGISTRY}/${CI_PROJECT_PATH}/Dmia
+    DOCKER_BUILD_CONTEXT_PATH: Dmia
   before_script:
     - *version_script
     - export KANIKO_OPTS="--build-arg BUILD_VERSION=${BUILD_VERSION}"
