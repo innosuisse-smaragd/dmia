@@ -9,5 +9,6 @@ LABEL org.label-schema.name="mima-starter-ui"
 LABEL org.label-schema.version="${BUILD_VERSION}"
 
 RUN mkdir /app
+Run echo ${UI_DIST:-dist} 
 COPY ${UI_DIST:-dist} /app
 COPY nginx.conf /etc/nginx/nginx.conf
