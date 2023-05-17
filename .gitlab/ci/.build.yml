@@ -15,7 +15,7 @@ fe:build:
       - apps/frontend/dist
 
 fe:docker:
-  stage: commit:build
+  stage: build
   extends:
     - .kaniko-build-image-gitlab
   variables:
