@@ -13,4 +13,9 @@ export default defineConfig({
     },
     reporters: ["default", "html", "json"],
   },
+  build: {
+    rollupOptions: {
+      external: ["@mui/icons-material"],
+    },
+  },
 });
