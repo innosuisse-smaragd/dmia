@@ -1,39 +1,54 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Card, CardHeader, CardContent, Typography } from "@mui/material";
+import { useState } from "react";
+
+import { Box, Container, Fade, Slide, Stack } from "@mui/material";
+import { IconButton } from "@mui/material";
+import ChatIcon from "@mui/icons-material/Chat";
+
+import Page from "./components/Page";
+import Chat from "./components/Chat";
 
 function App() {
-  const [tests, setTests] = useState([]);
+  const [showChat, setShowChat] = useState(false);
 
-  const fetchTests = async () => {
-    const apiKey = import.meta.env.VITE_STRAPI_API_KEY;
-    const { data } = await axios.get("http://localhost:1337/api/tests", {
-      headers: {
-        Authorization: `bearer ${apiKey}`,
-      },
-    });
-
-    return data.data;
+  const renderChatButton = () => {
+    return (
+      <Fade in={!showChat} mountOnEnter unmountOnExit>
+        <IconButton
+          aria-label="Show Chat"
+          color="primary"
+          size="large"
+          sx={{ position: "fixed", bottom: "16px", right: "16px" }}
+          onClick={() => setShowChat(true)}
+        >
+          <ChatIcon
+            sx={{
+              fontSize: "3rem",
+            }}
+          />
+        </IconButton>
+      </Fade>
+    );
   };
 
-  useEffect(() => {
-    fetchTests().then((results) => {
-      setTests(results);
-    });
-  }, []);
-
-  const renderedTests = tests.map(({ id, attributes }) => {
+  const renderChat = () => {
     return (
-      <Card key={id}>
-        <CardHeader title={attributes.Name} />
-        <CardContent>
-          <Typography variant="body1">{attributes.Description}</Typography>
-        </CardContent>
-      </Card>
+      <Slide direction="left" in={showChat} mountOnEnter unmountOnExit>
+        <Container maxWidth="xs" sx={{ height: "100%" }}>
+          <Chat onClose={() => setShowChat(false)} />
+        </Container>
+      </Slide>
     );
-  });
+  };
 
-  return <div>{renderedTests}</div>;
+  return (
+    <Box width="100vw" height="100vh">
+      <Stack sx={{ height: "100%", overflowX: "hidden" }} direction="row">
+        <Page />
+        {renderChatButton()}
+        {renderChat()}
+      </Stack>
+    </Box>
+  );
 }
 
 export default App;
