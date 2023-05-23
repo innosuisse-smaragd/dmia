@@ -9,11 +9,12 @@ include:
     file: "/templates/node.gitlab-ci.yml"
     ref: "v8.1"
   - local: ".gitlab/ci/.build.yml"
+  - local: ".gitlab/ci/.test.yml"
 
 variables:
   VERSION: "1.0"
 
 stages:
-  - test
   - build
+  - test
   - deploy
