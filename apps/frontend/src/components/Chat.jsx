@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/close";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Chat({ onClose }) {
   return (
