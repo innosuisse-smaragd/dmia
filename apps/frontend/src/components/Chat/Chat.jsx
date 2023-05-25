@@ -6,9 +6,18 @@ import CloseIcon from "@mui/icons-material/Close";
 function Chat({ onClose, showChat }) {
   return (
     <Slide direction="left" in={showChat} mountOnEnter unmountOnExit>
-      <Container maxWidth="xs" sx={{ height: "100%" }}>
+      <Container
+        maxWidth="xs"
+        sx={{
+          height: "100%",
+          position: "fixed",
+          right: "0",
+          top: "0",
+          backgroundColor: "#fff",
+        }}
+      >
         <div>Chat goes here</div>
-        <IconButton onClick={() => onClose()}>
+        <IconButton aria-label="Close chat" onClick={() => onClose()}>
           <CloseIcon />
         </IconButton>
       </Container>
