@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 
 import NavBar from "./NavBar";
+import Onboarding from "./Onboarding";
 
 // Container component for the app content
 function Page() {
@@ -15,7 +16,7 @@ function Page() {
         alignItems="center"
         height="90%"
       >
-        <div>Page goes here</div>
+        <Onboarding />
       </Box>
     </Box>
   );
