@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectSelectedFontSize } from "../../slices/themeSlice";
 import {
   Card,
   CardActions,
@@ -10,8 +12,20 @@ import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 
 // Card component displaying the onboarding tasks to the user
 function OnboardingCard({ onContinue }) {
+  const fontSize = useSelector(selectSelectedFontSize);
+  console.log(fontSize);
+
   return (
-    <Card sx={{ minWidth: 350, maxWidth: 550, mb: 7, padding: 2 }}>
+    <Card
+      sx={{
+        minWidth: 350,
+        maxWidth: 550,
+        mb: 7,
+        padding: 2,
+        // When font size is 32px apply these styles
+        ...(fontSize === 28 && { maxWidth: 950, mt: 10 }),
+      }}
+    >
       <CardContent sx={{ display: "flex", flexDirection: "column" }}>
         <MedicalInformationIcon
           color="primary"

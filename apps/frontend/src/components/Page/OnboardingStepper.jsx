@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectSelectedFontSize } from "../../slices/themeSlice";
 import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 
 // Stepper component displaying where the user is at in their onboarding process
 function OnboardingStepper({ activeStep }) {
+  const fontSize = useSelector(selectSelectedFontSize);
   const steps = [
     "Greetings!",
     "Inform the user about data processing",
@@ -13,7 +16,11 @@ function OnboardingStepper({ activeStep }) {
 
   return (
     <>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper
+        activeStep={activeStep}
+        sx={{ ...(fontSize === 28 && { mb: 10 }) }}
+        alternativeLabel
+      >
         {steps.map((label, key) => (
           <Step key={key}>
             <StepLabel>{label}</StepLabel>

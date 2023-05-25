@@ -18,7 +18,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box width="100vw" height="100vh">
+      <Box
+        sx={{
+          ...(fontSize === 14 && {
+            width: "100vw",
+            height: "100vh",
+            overflowX: "hidden",
+          }),
+        }}
+      >
         <Page />
         <ChatButton onClick={() => setShowChat(true)} showChat={showChat} />
         <Chat onClose={() => setShowChat(false)} showChat={showChat} />
