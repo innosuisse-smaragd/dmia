@@ -21,7 +21,7 @@ function NavBar() {
       <StyledToolbar>
         <MedicalInformationIcon sx={{ display: "flex", mr: 1 * grow }} />
         <Typography variant="h5" noWrap sx={{ display: "flex", mr: 2 * grow }}>
-          DMIA
+          Mia
         </Typography>
         <FontSizeSelector />
       </StyledToolbar>

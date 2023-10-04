@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 import NavBar from "./NavBar";
-import Onboarding from "./Onboarding";
+import Chat from "../Chat/Chat";
 
 // Container component for the app content
 function Page() {
@@ -10,13 +10,8 @@ function Page() {
       <Box height="10%">
         <NavBar />
       </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="90%"
-      >
-        <Onboarding />
+      <Box display="flex" justifyContent="center" height="90%">
+        <Chat />
       </Box>
     </Box>
   );
