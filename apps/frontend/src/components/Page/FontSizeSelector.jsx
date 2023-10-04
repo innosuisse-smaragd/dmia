@@ -6,6 +6,7 @@ import {
   selectGrow,
 } from "../../slices/themeSlice";
 import { Button, Menu, MenuItem, styled } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 // Component used to select the app's global font size
 function FontSizeSelector() {
@@ -48,6 +49,7 @@ function FontSizeSelector() {
         sx={{ mr: 1 }}
       >
         Font Size
+        <ArrowDropDownIcon size="large" />
       </Button>
 
       <Menu
