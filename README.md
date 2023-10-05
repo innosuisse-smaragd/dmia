@@ -30,5 +30,5 @@ Once you are done running the project, simply press the keys __"ctrl & c"__ to s
 
 ## Testing user
 The user details for testing are :
-- Alexandra Müller
+- Alex Müller
 - 25.08.1973
