@@ -54,25 +54,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          // When font size is 16px apply these styles
-          ...(fontSize === 14 && {
-            width: "100vw",
-            height: "100vh",
-            overflowX: "hidden",
-          }),
-        }}
-      >
-        <Box width="100%" height="100%">
-          <Box height="10%">
-            <NavBar />
-          </Box>
-          <Box display="flex" justifyContent="center" height="90%">
-            <RouterProvider router={router} />
-          </Box>
-        </Box>
-      </Box>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }

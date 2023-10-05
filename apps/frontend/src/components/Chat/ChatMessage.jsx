@@ -23,7 +23,6 @@ function ChatMessage({
 
   const renderText = () => {
     if (Array.isArray(text)) {
-      console.log("Is array");
       return (
         <ul style={{ margin: 0, padding: "0 0 0 1rem" }}>
           {text.map((t, key) => (

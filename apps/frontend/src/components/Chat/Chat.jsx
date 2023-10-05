@@ -80,7 +80,9 @@ function Chat() {
 
     if (Array.isArray(answer)) {
       answer.forEach((a) => {
-        enabled = compareAnswer(question, a);
+        if (compareAnswer(question, a)) {
+          enabled = compareAnswer(question, a);
+        }
       });
     } else {
       enabled = compareAnswer(question, answer);
@@ -204,7 +206,7 @@ function Chat() {
 
   const handleFinalMessage = (message) => {
     if (message === true) {
-      navigate("/uberprufen");
+      navigate("/uberprufen", { state: { displayedMessages } });
     }
   };
 

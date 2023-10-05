@@ -48,7 +48,7 @@ function FontSizeSelector() {
         color="inherit"
         sx={{ mr: 1 }}
       >
-        Font Size
+        Schriftgröße
         <ArrowDropDownIcon size="large" />
       </Button>
 

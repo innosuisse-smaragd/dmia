@@ -6,8 +6,8 @@ export const themeSlice = createSlice({
   initialState: {
     // App font sizes options
     fontSizes: [
-      { size: 14, text: "16 Pixels", selected: true },
-      { size: 28, text: "32 Pixels", selected: false },
+      { size: 14, text: "16 Pixel", selected: true },
+      { size: 28, text: "32 Pixel", selected: false },
     ],
     grow: 1, // Coefficient used to grow properties
   },

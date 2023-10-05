@@ -954,7 +954,7 @@ const questionnaire = {
                 display: "Andere Massnahme",
               },
               question: "2102152287538",
-              operator: "!=",
+              operator: "=",
             },
           ],
           text: "Beschreiben Sie durchgeführte Massnahme in eigenen Worten.",

@@ -17,7 +17,7 @@ function NavBar() {
   }));
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <StyledToolbar>
         <MedicalInformationIcon sx={{ display: "flex", mr: 1 * grow }} />
         <Typography variant="h5" noWrap sx={{ display: "flex", mr: 2 * grow }}>

@@ -81,7 +81,7 @@ const onboarding = {
       enableWhen: [
         {
           answerCoding: {
-            display: "Alexandra Müller",
+            display: "Alex Müller",
           },
           question: "2",
           operator: "=",
@@ -94,7 +94,7 @@ const onboarding = {
       enableWhen: [
         {
           answerCoding: {
-            display: "Alexandra Müller",
+            display: "Alex Müller",
           },
           question: "2",
           operator: "!=",
@@ -103,7 +103,7 @@ const onboarding = {
     },
     {
       type: "display",
-      text: "Guten Tag, Alexandra Müller! Ich konnte Sie erfolgreich erfassen.",
+      text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
           answerCoding: {

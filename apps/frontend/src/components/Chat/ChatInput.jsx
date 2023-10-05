@@ -141,6 +141,7 @@ function ChatInput({
             format="DD.MM.YYYY"
             sx={{ width: "100%", mr: 1 }}
             disabled={isDisabled}
+            label={'"TT.MM.JJJJ"'}
           />
         </LocalizationProvider>
       )}
@@ -171,7 +172,7 @@ function ChatInput({
       )}
       {type === "select" && (
         <FormControl fullWidth sx={{ mr: 1 }}>
-          <InputLabel id="select-label">Select</InputLabel>
+          <InputLabel id="select-label">Wählen</InputLabel>
           <Select
             labelId="select-label"
             id="select"
@@ -220,6 +221,7 @@ ChatInput.propTypes = {
   onClick: PropTypes.func,
   options: PropTypes.array,
   isDisabled: PropTypes.bool,
+  setInputDisabled: PropTypes.func,
 };
 
 export default ChatInput;
