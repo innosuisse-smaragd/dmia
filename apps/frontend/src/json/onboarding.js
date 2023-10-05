@@ -81,7 +81,7 @@ const onboarding = {
       enableWhen: [
         {
           answerCoding: {
-            display: "John Doe",
+            display: "Alexandra Müller",
           },
           question: "2",
           operator: "=",
@@ -94,7 +94,7 @@ const onboarding = {
       enableWhen: [
         {
           answerCoding: {
-            display: "John Doe",
+            display: "Alexandra Müller",
           },
           question: "2",
           operator: "!=",
@@ -103,11 +103,11 @@ const onboarding = {
     },
     {
       type: "display",
-      text: "Guten Tag, Jon Doe! Ich konnte Sie erfolgreich erfassen.",
+      text: "Guten Tag, Alexandra Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
           answerCoding: {
-            display: "07.10.2023",
+            display: "25.08.1973",
           },
           question: "3",
           operator: "=",
@@ -120,7 +120,7 @@ const onboarding = {
       enableWhen: [
         {
           answerCoding: {
-            display: "07.10.2023",
+            display: "25.08.1973",
           },
           question: "3",
           operator: "!=",

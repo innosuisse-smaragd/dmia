@@ -30,7 +30,13 @@ const MenuProps = {
   },
 };
 
-function ChatInput({ type = "text", onClick, options }) {
+function ChatInput({
+  type = "text",
+  onClick,
+  options,
+  isDisabled,
+  setInputDisabled,
+}) {
   const [multi, setMulti] = useState([]);
   const [select, setSelect] = useState("");
   const [value, setValue] = useState("");
@@ -64,6 +70,7 @@ function ChatInput({ type = "text", onClick, options }) {
       setValue("");
       setSelect("");
       setMulti([]);
+      setInputDisabled(true);
     }
   };
 
@@ -87,6 +94,12 @@ function ChatInput({ type = "text", onClick, options }) {
     setSelectDate(date);
   };
 
+  const handleReview = (e) => {
+    if (e.type === "click") {
+      onClick(true);
+    }
+  };
+
   return (
     <Stack direction="row" sx={{ p: 1, borderTop: "solid 1px #ddd" }}>
       {type === "text" && (
@@ -95,6 +108,7 @@ function ChatInput({ type = "text", onClick, options }) {
           value={value}
           onChange={handleChange}
           onKeyDown={handleClick}
+          disabled={isDisabled}
         />
       )}
       {type === "number" && (
@@ -104,10 +118,20 @@ function ChatInput({ type = "text", onClick, options }) {
           type="number"
           onChange={handleChange}
           onKeyDown={handleClick}
+          disabled={isDisabled}
         />
       )}
       {type === "disabled" && (
         <TextField sx={{ width: "100%", mr: 1 }} disabled />
+      )}
+      {type === "final" && (
+        <TextField
+          sx={{ width: "100%", mr: 1 }}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleClick}
+          disabled={true}
+        />
       )}
       {type === "date" && (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -116,6 +140,7 @@ function ChatInput({ type = "text", onClick, options }) {
             onChange={handleDateChange}
             format="DD.MM.YYYY"
             sx={{ width: "100%", mr: 1 }}
+            disabled={isDisabled}
           />
         </LocalizationProvider>
       )}
@@ -131,6 +156,7 @@ function ChatInput({ type = "text", onClick, options }) {
             input={<OutlinedInput label="Multi" />}
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
+            disabled={isDisabled}
           >
             {options.map((option, key) => (
               <MenuItem value={option.valueCoding.display} key={key}>
@@ -152,6 +178,7 @@ function ChatInput({ type = "text", onClick, options }) {
             value={select}
             label="Select"
             onChange={handleSelectChange}
+            disabled={isDisabled}
           >
             {options.map((option, key) => {
               return (
@@ -168,9 +195,21 @@ function ChatInput({ type = "text", onClick, options }) {
           <SendIcon />
         </Button>
       ) : (
-        <Button variant="outlined" onClick={handleClick}>
+        <Button variant="outlined" onClick={handleClick} disabled={isDisabled}>
           <SendIcon />
         </Button>
+      )}
+      {type === "final" ? (
+        <Button
+          variant="outlined"
+          sx={{ ml: ".5rem", px: "1.5rem" }}
+          onClick={handleReview}
+          disabled={isDisabled}
+        >
+          Überprüfen
+        </Button>
+      ) : (
+        ""
       )}
     </Stack>
   );
@@ -180,6 +219,7 @@ ChatInput.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   options: PropTypes.array,
+  isDisabled: PropTypes.bool,
 };
 
 export default ChatInput;

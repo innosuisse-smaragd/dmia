@@ -1011,7 +1011,7 @@ const questionnaire = {
       ],
     },
     {
-      type: "end",
+      type: "final",
       linkId: "6038791184237",
       text: "Vielen Dank, dass Sie sich die Zeit und Mühe gemacht haben die Gesundheitsfragen zu beantworten! Ich wünsche Ihnen einen angenehmen Tag.",
     },

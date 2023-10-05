@@ -7,6 +7,7 @@ import newQuestionnaire from "../../json/questionnaire_1.2";
 import onboarding from "../../json/onboarding";
 import { useEffect, useState } from "react";
 import "./chat.css";
+import { useNavigate } from "react-router-dom";
 
 // Container component for the chat section of the app
 function Chat() {
@@ -25,18 +26,21 @@ function Chat() {
   const [currentMessageIndex, setCurrentMessageIndex] =
     useState(initialMessageindex);
 
-  console.log("CURRENT MESSAGE INDEX", currentMessageIndex);
-  console.log("QUESTIONNAIRE LENGTH", questionnaire.length);
-
   const [displayedMessages, setDisplayedMessages] = useState(
-    questionnaire.slice(0, currentMessageIndex + 1).map((question) => {
-      return { ...question, user: false };
+    questionnaire.slice(0, currentMessageIndex + 1).map((question, key) => {
+      return { ...question, user: false, typing: true };
     })
   );
 
   const [startTime, setStartTime] = useState(new Date());
 
   const [logs, setLogs] = useState({ logs: [] });
+
+  const [inputDisabled, setInputDisabled] = useState(true);
+
+  let messageDelay = 2000;
+
+  const navigate = useNavigate();
 
   if (currentMessageIndex === questionnaire.length - 1) {
     var blob = new Blob([JSON.stringify(logs)], {
@@ -45,14 +49,8 @@ function Chat() {
     saveAs(blob, "dmia_logs.json");
   }
 
-  console.log("Initial displayed messages", displayedMessages);
-  console.log("Full questionnaire", questionnaire);
-
   const compareAnswer = (question, answer) => {
     let enabled = false;
-    console.log("checking");
-    console.log("question", question);
-    console.log("answer", answer);
 
     // How the condition and answer should be compared
     switch (question.enableWhen[0].operator) {
@@ -92,8 +90,6 @@ function Chat() {
   };
 
   const handleNewMessage = (message) => {
-    console.log(message);
-
     let indexIncrement = 1;
     const currentLinkId = questionnaire[currentMessageIndex].linkId;
 
@@ -102,26 +98,16 @@ function Chat() {
 
     // Check if the question is optional
     if (nextQuestion.enableWhen) {
-      console.log("optional");
       let enableWhenQuestionId = nextQuestion.enableWhen[0].question;
       let enableWhenMessage;
 
-      console.log(currentLinkId);
-      console.log(enableWhenQuestionId);
-
       if (currentLinkId === enableWhenQuestionId) {
-        console.log("Question is previous");
         enableWhenMessage = message;
       } else {
-        console.log("Question is in array");
         enableWhenMessage = displayedMessages.filter((displayedMessage) => {
           return displayedMessage.questionLinkId === enableWhenQuestionId;
         })[0].text;
       }
-
-      console.log("Enable When Question Id", enableWhenQuestionId);
-      console.log("enableWhenMessage", enableWhenMessage);
-      console.log("Next question", nextQuestion);
 
       // Check if the question is enabled
       let enableQuestion = checkEnableQuestion(nextQuestion, enableWhenMessage);
@@ -152,8 +138,6 @@ function Chat() {
     const currentTime = new Date();
     const timediff = (currentTime - startTime) / 1000;
 
-    console.log("TIMEDIFFFFFFFF", timediff);
-
     if (message !== true) {
       setLogs({
         logs: [
@@ -181,27 +165,36 @@ function Chat() {
       });
     }
 
-    console.log("CURRENT MESSAGE INDEX", currentMessageIndex);
-    console.log("QUESTIONNAIRE LENGTH", questionnaire.length);
+    let modifiedDisplayMessages = displayedMessages;
+
+    if (message !== true) {
+      modifiedDisplayMessages = displayedMessages.map((modifiedMessage) => ({
+        ...modifiedMessage,
+        typing: false,
+      }));
+    }
 
     if (message === true) {
       setDisplayedMessages([
-        ...displayedMessages,
+        ...modifiedDisplayMessages,
         {
           ...nextQuestion,
+          typing: true,
         },
       ]);
     } else {
       setDisplayedMessages([
-        ...displayedMessages,
+        ...modifiedDisplayMessages,
         {
           type: "text",
           user: true,
           text: message,
           questionLinkId: currentLinkId,
+          typing: false,
         },
         {
           ...nextQuestion,
+          typing: true,
         },
       ]);
     }
@@ -209,27 +202,57 @@ function Chat() {
     setCurrentMessageIndex(currentMessageIndex + indexIncrement);
   };
 
+  const handleFinalMessage = (message) => {
+    if (message === true) {
+      navigate("/uberprufen");
+    }
+  };
+
   const renderInputField = () => {
     const currentMessage = displayedMessages[displayedMessages.length - 1];
 
     switch (currentMessage.type) {
       case "text":
-        return <ChatInput onClick={handleNewMessage} />;
+        return (
+          <ChatInput
+            onClick={handleNewMessage}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
       case "integer":
-        return <ChatInput type="number" onClick={handleNewMessage} />;
+        return (
+          <ChatInput
+            type="number"
+            onClick={handleNewMessage}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
       case "end":
-        return <ChatInput type="disabled" />;
+        return (
+          <ChatInput
+            type="disabled"
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
       case "display":
         handleNewMessage(true);
         break;
       case "choice":
         if (currentMessage.repeats === false) {
           return (
-            <ChatInput
-              type="select"
-              onClick={handleNewMessage}
-              options={currentMessage.answerOption}
-            />
+            <>
+              {}
+              <ChatInput
+                type="select"
+                onClick={handleNewMessage}
+                options={currentMessage.answerOption}
+                isDisabled={inputDisabled}
+                setInputDisabled={setInputDisabled}
+              />
+            </>
           );
         } else {
           return (
@@ -237,15 +260,31 @@ function Chat() {
               type="multi"
               onClick={handleNewMessage}
               options={currentMessage.answerOption}
+              isDisabled={inputDisabled}
+              setInputDisabled={setInputDisabled}
             />
           );
         }
       case "date":
-        return <ChatInput type="date" onClick={handleNewMessage} />;
+        return (
+          <ChatInput
+            type="date"
+            onClick={handleNewMessage}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
+      case "final":
+        return (
+          <ChatInput
+            type="final"
+            onClick={handleFinalMessage}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
     }
   };
-
-  console.log("LOGS", logs);
 
   return (
     <Stack sx={{ width: "100%", maxWidth: 1200, px: 12 }}>
@@ -278,12 +317,37 @@ function Chat() {
         id="chat-content"
       >
         {displayedMessages.map((message, key) => {
+          let islast = false;
+
+          if (message.typing) {
+            messageDelay += 2000;
+          }
+
+          if (key === displayedMessages.length - 1) {
+            islast = true;
+          }
           return (
-            <ChatMessage text={message.text} key={key} user={message.user} />
+            <ChatMessage
+              text={message.text}
+              key={key}
+              user={message.user}
+              typing={message.typing}
+              delay={messageDelay}
+              inputDisabled={setInputDisabled}
+              isLast={islast}
+            />
           );
         })}
       </Stack>
-
+      {inputDisabled ? (
+        <Typography
+          sx={{ pl: "8px", pb: "4px", color: "grey", fontSize: ".8rem" }}
+        >
+          Tippen...
+        </Typography>
+      ) : (
+        ""
+      )}
       {renderInputField()}
 
       {/* <ChatInput type="multi" /> */}
