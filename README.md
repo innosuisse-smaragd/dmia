@@ -18,4 +18,11 @@ To run the project, open a terminal window at the root of the project and run th
 ```
 turbo dev
 ```
+Once the command executed, you can access the app on [localhost:5173](http://localhost:5173)
+
 Once you are done running the project, simply press the keys __"ctrl & c"__ to stop the process
+
+## Testing user
+The user details for testing are :
+- Alexandra Müller
+- 25.08.1973
