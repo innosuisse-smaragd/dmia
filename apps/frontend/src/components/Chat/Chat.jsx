@@ -8,6 +8,7 @@ import onboarding from "../../json/onboarding";
 import { useEffect, useState } from "react";
 import "./chat.css";
 import { useNavigate } from "react-router-dom";
+import { fetchQaAnswer } from "../../api/qa";
 
 // Container component for the chat section of the app
 function Chat() {
@@ -41,13 +42,6 @@ function Chat() {
   let messageDelay = 2000;
 
   const navigate = useNavigate();
-
-  if (currentMessageIndex === questionnaire.length - 1) {
-    var blob = new Blob([JSON.stringify(logs)], {
-      type: "text/plain;charset=utf-8",
-    });
-    saveAs(blob, "dmia_logs.json");
-  }
 
   const compareAnswer = (question, answer) => {
     let enabled = false;
@@ -184,6 +178,27 @@ function Chat() {
           typing: true,
         },
       ]);
+    } else if (nextQuestion.type === "final") {
+      setDisplayedMessages([
+        ...modifiedDisplayMessages,
+        {
+          type: "text",
+          user: true,
+          text: message,
+          questionLinkId: currentLinkId,
+          typing: false,
+        },
+        {
+          ...nextQuestion,
+          typing: true,
+        },
+        {
+          type: "final",
+          user: false,
+          text: "Wenn Sie weitere Fragen zur Mammographie haben, können Sie diese nun gerne an mich stellen.",
+          typing: true,
+        },
+      ]);
     } else {
       setDisplayedMessages([
         ...modifiedDisplayMessages,
@@ -204,7 +219,71 @@ function Chat() {
     setCurrentMessageIndex(currentMessageIndex + indexIncrement);
   };
 
+  const handleNewQA = (message) => {
+    let modifiedDisplayMessages = displayedMessages;
+    const currentTime = new Date();
+    const timediff = (currentTime - startTime) / 1000;
+
+    if (message !== true) {
+      modifiedDisplayMessages = displayedMessages.map((modifiedMessage) => ({
+        ...modifiedMessage,
+        typing: false,
+      }));
+    }
+
+    async function getQaAnswer() {
+      const question = { text: message };
+      const data = await fetchQaAnswer(question);
+
+      setDisplayedMessages([
+        ...modifiedDisplayMessages,
+        {
+          type: "text",
+          user: true,
+          text: message,
+          typing: false,
+        },
+        {
+          type: "final",
+          user: false,
+          text: data.result,
+          typing: true,
+        },
+      ]);
+
+      setLogs({
+        logs: [
+          ...logs.logs,
+          {
+            isQA: true,
+            time:
+              timediff > 60
+                ? `${Math.round(((timediff % 86400000) % 3600000) / 60)}:${
+                    Math.round(timediff % 60) < 10
+                      ? `0${Math.round(timediff % 60)}`
+                      : Math.round(timediff % 60)
+                  }`
+                : `${
+                    Math.round(timediff) < 10
+                      ? `0${Math.round(timediff)}`
+                      : Math.round(timediff)
+                  }`,
+            question: message,
+            answer: data.result,
+          },
+        ],
+      });
+    }
+
+    getQaAnswer();
+  };
+
   const handleFinalMessage = (message) => {
+    var blob = new Blob([JSON.stringify(logs)], {
+      type: "text/plain;charset=utf-8",
+    });
+    saveAs(blob, "dmia_logs.json");
+
     if (message === true) {
       navigate("/uberprufen", { state: { displayedMessages } });
     }
@@ -280,7 +359,8 @@ function Chat() {
         return (
           <ChatInput
             type="final"
-            onClick={handleFinalMessage}
+            onClick={handleNewQA}
+            onReview={handleFinalMessage}
             isDisabled={inputDisabled}
             setInputDisabled={setInputDisabled}
           />

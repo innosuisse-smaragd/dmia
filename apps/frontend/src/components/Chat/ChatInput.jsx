@@ -36,6 +36,7 @@ function ChatInput({
   options,
   isDisabled,
   setInputDisabled,
+  onReview,
 }) {
   const [multi, setMulti] = useState([]);
   const [select, setSelect] = useState("");
@@ -79,7 +80,6 @@ function ChatInput({
   };
 
   const handleDateChange = (date) => {
-    console.log(date);
     let month = `${date.$M + 1}`;
     if (month.length === 1) {
       month = "0" + month;
@@ -88,7 +88,6 @@ function ChatInput({
     if (day.length === 1) {
       day = "0" + day;
     }
-    console.log(month);
     const formattedDate = `${day}.${month}.${date.$y}`;
     setValue(formattedDate);
     setSelectDate(date);
@@ -96,7 +95,7 @@ function ChatInput({
 
   const handleReview = (e) => {
     if (e.type === "click") {
-      onClick(true);
+      onReview(true);
     }
   };
 
@@ -130,7 +129,7 @@ function ChatInput({
           value={value}
           onChange={handleChange}
           onKeyDown={handleClick}
-          disabled={true}
+          disabled={isDisabled}
         />
       )}
       {type === "date" && (
@@ -222,6 +221,7 @@ ChatInput.propTypes = {
   options: PropTypes.array,
   isDisabled: PropTypes.bool,
   setInputDisabled: PropTypes.func,
+  onReview: PropTypes.func,
 };
 
 export default ChatInput;
