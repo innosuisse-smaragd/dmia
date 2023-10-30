@@ -2,7 +2,7 @@ const onboarding = {
   item: [
     {
       type: "display",
-      text: "Herzlich willkommen am Universitätsinstitut für Diagnostische, Interventionelle und Pädiatrische Radiologie am Inselspital Bern.",
+      text: "Herzlich willkommen in der Campusradiologie des Lindenhofspitals in Bern.",
     },
     {
       type: "display",
@@ -10,7 +10,7 @@ const onboarding = {
     },
     {
       type: "display",
-      text: "Ihre Angaben werden vertraulich behandelt und verbleiben - ausgenommen von Befund-Inhalten -  innerhalb des Inselspitals. ",
+      text: "Ihre Angaben werden vertraulich behandelt und verbleiben - ausgenommen von Befund-Inhalten -  innerhalb des Lindenhofspitals.",
     },
     {
       type: "display",
