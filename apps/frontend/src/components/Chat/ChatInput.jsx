@@ -11,7 +11,8 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
@@ -134,13 +135,14 @@ function ChatInput({
       )}
       {type === "date" && (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
+          <DesktopDatePicker
             value={selectDate}
             onChange={handleDateChange}
             format="DD.MM.YYYY"
             sx={{ width: "100%", mr: 1 }}
             disabled={isDisabled}
             label={'"TT.MM.JJJJ"'}
+            openTo="year"
           />
         </LocalizationProvider>
       )}
