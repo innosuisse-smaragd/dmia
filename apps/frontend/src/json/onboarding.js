@@ -171,7 +171,7 @@ const onboarding = {
     },
     {
       type: "end",
-      text: "Ich konnte Sie nicht anhand Ihres Geburstdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+      text: "Ich konnte Sie nicht anhand Ihres Geburtsdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
       enableWhen: [
         {
           answerCoding: {
@@ -224,7 +224,7 @@ const onboarding = {
     },
     {
       type: "end",
-      text: "Ich konnte Sie nicht anhand Ihres Geburstdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+      text: "Ich konnte Sie nicht anhand Ihres Geburtsdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
       enableWhen: [
         {
           answerCoding: {
