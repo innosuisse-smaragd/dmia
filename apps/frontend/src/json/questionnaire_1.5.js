@@ -725,7 +725,7 @@ const questionnaire = {
           required: false,
           repeats: false,
           linkId: "7028160593013",
-          text: "Haben Sie seit dem letzten Arzttermin eine Spritze in Ihre Schulter erhalten (z.B. Korstisonspritze, Impfung, etc.)?",
+          text: "Haben Sie seit dem letzten Arzttermin eine Spritze in Ihre Schulter erhalten (z.B. Kortisonspritze, Impfung, etc.)?",
           answerOption: [
             {
               valueCoding: {
