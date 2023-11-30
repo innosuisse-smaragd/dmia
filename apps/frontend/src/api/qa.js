@@ -6,7 +6,7 @@ export const fetchQaAnswer = async (question) => {
 
   let config = {
     method: "post",
-    url: "http://localhost:5000/answer",
+    url: "https://dmia.public.medinflab.ti.bfh.ch/answer",
     headers: {
       "Content-Type": "application/json",
     },
@@ -27,7 +27,13 @@ export const fetchQaAnswer = async (question) => {
         };
       }
     } else if (error.request) {
-      console.log(error.request);
+      if (error.code === "ERR_NETWORK") {
+        answer = {
+          result:
+            "Es tut mir leid, ich habe derzeit Probleme, Ihre Frage zu beantworten. Bitte melden Sie dies dem medizinischen Personal",
+        };
+      }
+      console.log(error.code);
     } else {
       console.log("Error", error.message);
     }

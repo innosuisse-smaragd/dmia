@@ -3,7 +3,7 @@ import { saveAs } from "file-saver";
 import { blue } from "@mui/material/colors";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
-import newQuestionnaire from "../../json/questionnaire_1.2";
+import newQuestionnaire from "../../json/questionnaire_1.5";
 import onboarding from "../../json/onboarding";
 import { useEffect, useState } from "react";
 import "./chat.css";
@@ -13,8 +13,8 @@ import { fetchQaAnswer } from "../../api/qa";
 // Container component for the chat section of the app
 function Chat() {
   useEffect(() => {
-    let objDiv = document.getElementById("chat-content");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    let objDiv = document.getElementById("auto-scroll");
+    objDiv.scrollIntoView();
   });
 
   const questionnaire = [...onboarding, ...newQuestionnaire];
@@ -78,6 +78,8 @@ function Chat() {
           enabled = compareAnswer(question, a);
         }
       });
+    } else if (answer === undefined) {
+      enabled = false;
     } else {
       enabled = compareAnswer(question, answer);
     }
@@ -102,7 +104,7 @@ function Chat() {
       } else {
         enableWhenMessage = displayedMessages.filter((displayedMessage) => {
           return displayedMessage.questionLinkId === enableWhenQuestionId;
-        })[0].text;
+        })[0]?.text;
       }
 
       // Check if the question is enabled
@@ -121,7 +123,7 @@ function Chat() {
           } else {
             enableWhenMessage = displayedMessages.filter((message) => {
               return message.questionLinkId === enableWhenQuestionId;
-            });
+            })[0]?.text;
           }
           enableQuestion = checkEnableQuestion(nextQuestion, enableWhenMessage);
         } else {
@@ -369,7 +371,7 @@ function Chat() {
   };
 
   return (
-    <Stack sx={{ width: "100%", maxWidth: 1200, px: 12 }}>
+    <Stack sx={{ width: "100%", maxWidth: 1200, px: 4 }}>
       {/* ----- Chat Header ----- */}
       <Stack
         direction="row"
@@ -389,7 +391,7 @@ function Chat() {
       {/* ----- Chat Content ----- */}
       <Stack
         sx={{
-          my: 4,
+          mt: 4,
           pl: 1,
           pr: 2,
           flex: 1,
@@ -420,6 +422,7 @@ function Chat() {
             />
           );
         })}
+        <div id="auto-scroll"></div>
       </Stack>
       {inputDisabled ? (
         <Typography

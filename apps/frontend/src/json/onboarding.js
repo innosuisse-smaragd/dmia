@@ -89,6 +89,34 @@ const onboarding = {
       ],
     },
     {
+      type: "text",
+      text: "Der von Ihnen eingegebene Name war falsch. Bitte versuche Sie es erneut.",
+      linkId: "4",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "Alex Müller",
+          },
+          question: "2",
+          operator: "!=",
+        },
+      ],
+    },
+    {
+      type: "date",
+      text: "Ich habe Sie gefunden. Bitte nennen Sie mir nun Ihr Geburtsdatum (TT.MM.JJJJ).",
+      linkId: "5",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "Alex Müller",
+          },
+          question: "4",
+          operator: "=",
+        },
+      ],
+    },
+    {
       type: "end",
       text: "Ich konnte Sie nicht finden. Bitte überprüfen Sie, ob Sie Ihren Namen richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
       enableWhen: [
@@ -96,7 +124,7 @@ const onboarding = {
           answerCoding: {
             display: "Alex Müller",
           },
-          question: "2",
+          question: "4",
           operator: "!=",
         },
       ],
@@ -115,14 +143,94 @@ const onboarding = {
       ],
     },
     {
-      type: "end",
-      text: "Ich konnte Sie nicht anhand Ihres Geburstdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin. ",
+      type: "date",
+      linkId: "6",
+      text: "Das von Ihnen eingegebene Datum war falsch. Bitte versuche Sie es erneut.",
       enableWhen: [
         {
           answerCoding: {
             display: "25.08.1973",
           },
           question: "3",
+          operator: "!=",
+        },
+      ],
+    },
+    {
+      type: "display",
+      text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "6",
+          operator: "=",
+        },
+      ],
+    },
+    {
+      type: "end",
+      text: "Ich konnte Sie nicht anhand Ihres Geburstdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "6",
+          operator: "!=",
+        },
+      ],
+    },
+    {
+      type: "date",
+      linkId: "7",
+      text: "Das von Ihnen eingegebene Datum war falsch. Bitte versuche Sie es erneut.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "5",
+          operator: "!=",
+        },
+      ],
+    },
+    {
+      type: "display",
+      text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "5",
+          operator: "=",
+        },
+      ],
+    },
+    {
+      type: "display",
+      text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "7",
+          operator: "=",
+        },
+      ],
+    },
+    {
+      type: "end",
+      text: "Ich konnte Sie nicht anhand Ihres Geburstdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+      enableWhen: [
+        {
+          answerCoding: {
+            display: "25.08.1973",
+          },
+          question: "7",
           operator: "!=",
         },
       ],
