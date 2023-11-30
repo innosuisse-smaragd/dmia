@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  namespace: default
+spec:
+  spec:
+    containers:
+      - name: suspicious_chebyshev
+        image: dmia-frontend
+        imagePullPolicy: Never
