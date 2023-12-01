@@ -109,6 +109,7 @@ function ChatInput({
           onChange={handleChange}
           onKeyDown={handleClick}
           disabled={isDisabled}
+          label={"Geben Sie hier Ihre Antwort ein"} // if not provided in Questionnaire resource as value for extension.url = http://hl7.org/fhir/StructureDefinition/entryFormat
         />
       )}
       {type === "number" && (
@@ -156,7 +157,13 @@ function ChatInput({
             value={multi}
             onChange={handleMultiChange}
             input={<OutlinedInput label="Multi" />}
-            renderValue={(selected) => selected.join(", ")}
+            renderValue={(selected) => {
+              if (selected.length === 0) {
+                return <em>Wählen Sie eine oder mehrere Optionen aus</em>;
+              }
+
+              return selected.join(', ');
+            }}
             MenuProps={MenuProps}
             disabled={isDisabled}
           >
@@ -178,7 +185,7 @@ function ChatInput({
             labelId="select-label"
             id="select"
             value={select}
-            label="Select"
+            label="Wählen Sie hier eine Option aus" // FIXME: Why is the label not displayed?
             onChange={handleSelectChange}
             disabled={isDisabled}
           >

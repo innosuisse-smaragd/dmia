@@ -73,8 +73,14 @@ const onboarding = {
           operator: "=",
         },
       ],
+        extension: [
+            {
+                "url": "http://hl7.org/fhir/StructureDefinition/entryFormat",
+                "valueString": "Vorname Nachname"
+            }
+        ],
     },
-    {
+      {
       type: "date",
       text: "Ich habe Sie gefunden. Bitte nennen Sie mir nun Ihr Geburtsdatum (TT.MM.JJJJ).",
       linkId: "3",
