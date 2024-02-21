@@ -38,7 +38,6 @@ We use docker to containerize the application so you will need to install it bef
 
 Here are the commands you need to run in order to build the project.
 
-### Frontend
 From the project root, navigate to the frontend app
 ```
 cd apps/frontend
@@ -53,3 +52,22 @@ After the command executed, the app is built. In order to verify that the app ex
 docker images
 ```
 If the build process succeeded, an image with the name dmia-frontend appears in the list of repositories.
+
+## Deploy to Tomcat
+As requested, the app needs to be deployed on a tomcat server. To do so, follow these steps:
+
+From the project root, navigate to the frontend app
+```
+cd apps/frontend
+```
+
+Once you navigated to the root of the frontend app, execute this command:
+```
+npm run build
+```
+
+After the command executed, the app is built and can be found in the apps/frontend/dist folder.
+
+Copy the dist folder and paste it in the tomcat webapps folder. Rename the dist folder dmia.
+
+The app is deployed on tomcat and can be accessed by navigating to your_tomcat_host/dmia. For example if the tomcat server runs on localhost:8080, the app is accessible at localhost:8080/dmia
