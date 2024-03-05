@@ -11,7 +11,7 @@
     <groupId>org.bfh.smaragd</groupId>
     <artifactId>dmia</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <!-- TODO <packaging>war</packaging> -->
+    <packaging>war</packaging>
     <name>dmia</name>
     <description>dmia</description>
     <properties>
@@ -22,7 +22,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -30,9 +29,15 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <!-- TODO <scope>provided</scope> -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
