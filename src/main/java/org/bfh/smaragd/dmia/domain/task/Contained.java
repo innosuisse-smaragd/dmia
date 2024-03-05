@@ -1,7 +1,8 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.task;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bfh.smaragd.dmia.domain.common.Meta;
 
 import java.util.List;
 

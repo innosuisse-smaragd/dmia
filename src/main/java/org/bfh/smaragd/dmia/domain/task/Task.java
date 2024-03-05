@@ -1,8 +1,10 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.task;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bfh.smaragd.dmia.domain.common.Meta;
+import org.bfh.smaragd.dmia.domain.common.Text;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Type {
-    private List<Coding> coding;
+public class Meta {
+    private List<String> profile;
 }

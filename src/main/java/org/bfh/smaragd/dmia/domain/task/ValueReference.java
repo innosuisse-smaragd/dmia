@@ -1,11 +1,10 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.task;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Requester {
+public class ValueReference {
     private String reference;
-    private String display;
 }

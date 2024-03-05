@@ -1,10 +1,11 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.task;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class For {
+public class Requester {
     private String reference;
+    private String display;
 }

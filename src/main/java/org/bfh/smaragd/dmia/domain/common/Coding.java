@@ -1,4 +1,4 @@
-package org.bfh.smaragd.dmia.domain;
+package org.bfh.smaragd.dmia.domain.common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
