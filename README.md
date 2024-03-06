@@ -55,9 +55,13 @@ mvn clean install
 
 After the command executed, the app 'dmia-X-X-X-SHAPSHOT.war' is built and can be found in the target/ folder.
 
-## Deploy to Tomcat
+## Deploy to Tomcat (local)
 As requested, the app needs to be deployed on a tomcat server. To do so, follow these steps:
 
-Copy the war file and paste it in the tomcat webapps/dmia folder.
+Before to deploy, set the tags </home> of the pom.xml with the absolute path to our local tomcat installation.
+
+```
+mvn cargo:deploy
+```
 
 The app is deployed on tomcat and can be accessed by navigating to your_tomcat_host/dmia. For example if the tomcat server runs on localhost:8080, the app is accessible at localhost:8080/dmia
