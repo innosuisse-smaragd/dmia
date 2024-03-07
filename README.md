@@ -27,6 +27,8 @@ mvn spring-boot:run -D spring-boot.run.profiles=dev
 ```
 Once the command executed, you can access the app on [localhost:8081](http://localhost:8081)
 
+The rest end point are accessible through this endpoint [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html)
+
 ### Run the frontend
 To run the frontend project, open a terminal window at the folder 'src/main/js' of the project and run the command bellow
 ```
