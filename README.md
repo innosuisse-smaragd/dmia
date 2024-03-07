@@ -23,7 +23,7 @@ mvn clean install
 ### Run the backend
 To run the backend project, open a terminal window at the root of the project and run the command bellow
 ```
-mvn spring-boot:run -D spring-boot.run.profiles=dev
+mvn spring-boot:run -D spring-boot.run.profiles=dev,mock-rest-client
 ```
 Once the command executed, you can access the app on [localhost:8081](http://localhost:8081)
 

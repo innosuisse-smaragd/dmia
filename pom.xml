@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.3</version>
+        <version>2.7.18</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.bfh.smaragd</groupId>
@@ -43,8 +43,8 @@
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.3.0</version>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
         </dependency>
         <!-- Test -->
         <dependency>
@@ -123,13 +123,13 @@
                 <version>1.10.12</version>
                 <configuration>
                     <container>
-                        <containerId>tomcat10x</containerId>
+                        <containerId>tomcat9x</containerId>
                         <type>installed</type>
-                        <home>C:\development\tomcat\apache-tomcat-10.1.19</home>
+                        <home>C:\development\tomcat\apache-tomcat-9.0.73</home>
                     </container>
                     <configuration>
                         <type>existing</type>
-                        <home>C:\development\tomcat\apache-tomcat-10.1.19</home>
+                        <home>C:\development\tomcat\apache-tomcat-9.0.73</home>
                     </configuration>
                 </configuration>
             </plugin>
