@@ -1,49 +1,37 @@
 package org.bfh.smaragd.dmia.controller;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
+import lombok.AllArgsConstructor;
 import org.bfh.smaragd.dmia.domain.task.Task;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.bfh.smaragd.dmia.service.QuestionnaireService;
+import org.bfh.smaragd.dmia.service.TaskSearchService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tasks")
+@AllArgsConstructor
 public class TaskRestController {
 
-    @Value("classpath:data/task.json")
-    private Resource taskResource;
+    private QuestionnaireService questionnaireService;
+    private TaskSearchService taskSearchService;
+
+    @PostMapping
+    public void addTask(@RequestBody Task task) {
+        questionnaireService.initialize(task);
+    }
 
     @GetMapping
     public List<Task> findAll() {
-        return List.of(findBy(""));
+        return taskSearchService.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Task findBy(@PathVariable String id) {
-        return loadTask();
+    public ResponseEntity<Task> findBy(@PathVariable String id) {
+        var oTask = taskSearchService.findById(id);
+        return ResponseEntity.of(oTask);
     }
 
-    private Task loadTask() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
-        Task task = null;
-        try {
-            task = mapper
-                    .readValue(taskResource.getFile(), Task.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return task;
-    }
 }
