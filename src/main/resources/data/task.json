@@ -1,0 +1,101 @@
+{
+  "resourceType" : "Task",
+  "id" : "GENERATED_BY_SERVER",
+  "meta" : {
+    "profile" : [
+      "http://somewhere.org/fhir/uv/myig/StructureDefinition/SmaragdTaskQuestionnaire"
+    ]
+  },
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"GENERATED_BY_SERVER\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;GENERATED_BY_SERVER&quot; </p><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-SmaragdTaskQuestionnaire.html\">SmaragdTaskQuestionnaire</a></p></div><p><b>status</b>: requested</p><p><b>intent</b>: order</p><p><b>code</b>: Complete Questionnaire <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-temp.html\">Temporary SDC Codes</a>#complete-questionnaire)</span></p><p><b>for</b>: <a name=\"PatientIdentifier\"> </a></p><blockquote><p/><p><a name=\"PatientIdentifier\"> </a></p><p><b>name</b>: Miriam Brönnimann </p><p><b>gender</b>: female</p><p><b>birthDate</b>: 1973-03-08</p></blockquote><p><b>authoredOn</b>: 2023-03-08</p><p><b>requester</b>: <a name=\"RequesterIdentifier\"> </a></p><blockquote><p/><p><a name=\"RequesterIdentifier\"> </a></p><h3>DeviceNames</h3><table class=\"grid\"><tr><td>-</td><td><b>Name</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>SmartOncology</td><td>user-friendly-name</td></tr></table></blockquote><blockquote><p><b>input</b></p><p><b>type</b>: Questionnaire <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-temp.html\">Temporary SDC Codes</a>#questionnaire)</span></p><p><b>value</b>: <a href=\"http://hl7.org/fhir/uv/sdc/Questionnaire/ID_OF_QUESTIONNAIRE\">http://hl7.org/fhir/uv/sdc/Questionnaire/ID_OF_QUESTIONNAIRE</a></p></blockquote><blockquote><p><b>input</b></p><p><b>type</b>: Response Endpoint <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-temp.html\">Temporary SDC Codes</a>#response-endpoint)</span></p><p><b>value</b>: <code>URL_OF_FHIR_SERVER/QuestionnaireResponse</code></p></blockquote><h3>Outputs</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Questionnaire Response <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://hl7.org/fhir/uv/sdc/STU3/CodeSystem-temp.html\">Temporary SDC Codes</a>#questionnaire-response)</span></td><td><a href=\"URL_OF_POSTED_QUESTIONNAIRE_RESPONSE\">URL_OF_POSTED_QUESTIONNAIRE_RESPONSE</a></td></tr></table><hr/><blockquote><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Miriam Brönnimann </b> female, DoB: 1973-03-08</p><hr/></blockquote><hr/><blockquote><p><b>Generated Narrative: Device #RequesterIdentifier</b><a name=\"RequesterIdentifier\"> </a></p><h3>DeviceNames</h3><table class=\"grid\"><tr><td>-</td><td><b>Name</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>SmartOncology</td><td>user-friendly-name</td></tr></table></blockquote></div>"
+  },
+  "contained" : [
+    {
+      "resourceType" : "Patient",
+      "id" : "PatientIdentifier",
+      "meta" : {
+        "profile" : [
+          "http://hl7.org/fhir/uv/sdc/StructureDefinition/SmaragdPatient"
+        ]
+      },
+      "name" : [
+        {
+          "family" : "Brönnimann",
+          "given" : [
+            "Miriam"
+          ]
+        }
+      ],
+      "gender" : "female",
+      "birthDate" : "1973-03-08"
+    },
+    {
+      "resourceType" : "Device",
+      "id" : "RequesterIdentifier",
+      "deviceName" : [
+        {
+          "name" : "SmartOncology",
+          "type" : "user-friendly-name"
+        }
+      ]
+    }
+  ],
+  "status" : "requested",
+  "intent" : "order",
+  "code" : {
+    "coding" : [
+      {
+        "system" : "http://hl7.org/fhir/uv/sdc/CodeSystem/temp",
+        "code" : "complete-questionnaire"
+      }
+    ]
+  },
+  "for" : {
+    "reference" : "#PatientIdentifier"
+  },
+  "authoredOn" : "2023-03-08",
+  "requester" : {
+    "reference" : "#RequesterIdentifier",
+    "display" : "SmartOncology"
+  },
+  "input" : [
+    {
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://hl7.org/fhir/uv/sdc/CodeSystem/temp",
+            "code" : "questionnaire"
+          }
+        ]
+      },
+      "valueCanonical" : "http://hl7.org/fhir/uv/sdc/Questionnaire/ID_OF_QUESTIONNAIRE"
+    },
+    {
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://hl7.org/fhir/uv/sdc/CodeSystem/temp",
+            "code" : "response-endpoint"
+          }
+        ]
+      },
+      "valueUrl" : "URL_OF_FHIR_SERVER/QuestionnaireResponse"
+    }
+  ],
+  "output" : [
+    {
+      "type" : {
+        "coding" : [
+          {
+            "system" : "http://hl7.org/fhir/uv/sdc/CodeSystem/temp",
+            "code" : "questionnaire-response"
+          }
+        ]
+      },
+      "valueReference" : {
+        "reference" : "URL_OF_POSTED_QUESTIONNAIRE_RESPONSE"
+      }
+    }
+  ]
+}
