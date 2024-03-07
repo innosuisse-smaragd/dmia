@@ -69,7 +69,7 @@
           }
         ]
       },
-      "valueCanonical" : "http://hl7.org/fhir/uv/sdc/Questionnaire/ID_OF_QUESTIONNAIRE"
+      "valueCanonical" : "https://smaragd-6dd61.web.app/Questionnaire-GENERATED_BY_SERVER.json"
     },
     {
       "type" : {
