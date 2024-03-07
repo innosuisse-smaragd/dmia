@@ -21,15 +21,13 @@ mvn clean install
 ## Run the project (local)
 
 ### Run the backend
-
-To run the frontend project, open a terminal window at the root of the project and run the command bellow
+To run the backend project, open a terminal window at the root of the project and run the command bellow
 ```
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -D spring-boot.run.profiles=dev
 ```
 Once the command executed, you can access the app on [localhost:8081](http://localhost:8081)
 
 ### Run the frontend
-
 To run the frontend project, open a terminal window at the folder 'src/main/js' of the project and run the command bellow
 ```
 npm install
@@ -58,10 +56,16 @@ After the command executed, the app 'dmia-X-X-X-SHAPSHOT.war' is built and can b
 ## Deploy to Tomcat (local)
 As requested, the app needs to be deployed on a tomcat server. To do so, follow these steps:
 
-Before to deploy, set the tags </home> of the pom.xml with the absolute path to our local tomcat installation.
+### Deploy from the command line
+Before deploying, set the tags </home> of the pom.xml with the absolute path to your local tomcat installation.
 
 ```
 mvn cargo:deploy
 ```
+
+### Deploy manually
+From you file explorer, navigate to the target folder and copy the 'dmia-X-X-X-SHAPSHOT.war' file.
+
+Paste it at the root of the tomcat/webapps folder.
 
 The app is deployed on tomcat and can be accessed by navigating to your_tomcat_host/dmia. For example if the tomcat server runs on localhost:8080, the app is accessible at localhost:8080/dmia
