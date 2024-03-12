@@ -13,11 +13,11 @@ import java.util.Optional;
 public class TaskSearchService {
     private final TaskRepository taskRepository;
 
-    public Optional<Task> findById(String id) {
-        return taskRepository.findById(id);
+    public Optional<Task> findByUsernameAndId(String username, String id) {
+        return taskRepository.findByUsernameAndId(username, id);
     }
 
-    public List<Task> findAll() {
-        return taskRepository.findAll();
+    public List<Task> findByUsername(String username) {
+        return taskRepository.findByUsername(username);
     }
 }
