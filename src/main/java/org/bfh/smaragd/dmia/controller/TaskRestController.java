@@ -1,10 +1,15 @@
 package org.bfh.smaragd.dmia.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.bfh.smaragd.dmia.domain.task.Task;
 import org.bfh.smaragd.dmia.service.QuestionnaireService;
 import org.bfh.smaragd.dmia.service.TaskSearchService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +28,18 @@ public class TaskRestController {
     }
 
     @GetMapping
-    public List<Task> findAll() {
-        return taskSearchService.findAll();
+    @PreAuthorize("isAuthenticated()")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public List<Task> findAll(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
+        return taskSearchService.findByUsername(userDetails.getUsername());
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> findBy(@PathVariable String id) {
-        var oTask = taskSearchService.findById(id);
+    @PreAuthorize("isAuthenticated()")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public ResponseEntity<Task> findBy(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails, @PathVariable String id) {
+        var oTask = taskSearchService.findByUsernameAndId(userDetails.getUsername(), id);
         return ResponseEntity.of(oTask);
     }
 

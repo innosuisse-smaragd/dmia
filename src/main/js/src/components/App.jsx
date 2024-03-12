@@ -11,6 +11,7 @@ import HomeRoute from "../routes/HomeRoute";
 import ReviewRoute from "../routes/ReviewRoute";
 import EndRoute from "../routes/EndRoute";
 import TasksRoute from "../routes/TasksRoute";
+import TestRoute from "../routes/TestRoute";
 
 function App() {
   // const [showChat, setShowChat] = useState(false);
@@ -28,6 +29,12 @@ function App() {
     {
       path: "/tasks",
       element: <TasksRoute />,
+      errorElement: <HomeRoute />,
+    },
+    // THIS ROUTE WAS CREATED TO TEST THE AUTHENTICATION AND SHOULD BE DELETED IN THE FINAL PRODUCT
+    {
+      path: "/test",
+      element: <TestRoute />,
       errorElement: <HomeRoute />,
     },
     {

@@ -16,12 +16,19 @@
     <description>dmia</description>
     <properties>
         <java.version>17</java.version>
+        <jjwt.version>0.12.5</jjwt.version>
+        <lombok.version>1.18.30</lombok.version>
+        <springdoc.version>1.7.0</springdoc.version>
     </properties>
     <dependencies>
         <!-- Spring boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -34,17 +41,33 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
         <!-- Other -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.7.0</version>
+            <version>${springdoc.version}</version>
         </dependency>
         <!-- Test -->
         <dependency>
