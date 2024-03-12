@@ -1,14 +1,10 @@
-import { Box, Button } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { selectSelectedFontSize } from "../slices/themeSlice";
+import { Box } from "@mui/material";
 import NavBar from "../components/Page/NavBar";
+import TasksList from "../components/Tasks/TasksList";
+import { selectSelectedFontSize } from "../slices/themeSlice";
 
-function HomeRoute() {
-  const navigate = useNavigate();
-  const onStartSession = () => {
-    navigate("/tasks");
-  };
+function TasksRoute() {
   const fontSize = useSelector(selectSelectedFontSize);
 
   return (
@@ -35,18 +31,7 @@ function HomeRoute() {
               paddingTop: "5rem",
             }}
           >
-            <h1>Willkommen bei Mia</h1>
-            <p>
-              dieser Bildschirm dient zu Testzwecken. Um eine Sitzung zu
-              starten, klicken Sie bitte auf die Schaltfläche unten
-            </p>
-            <Button
-              variant="contained"
-              sx={{ marginTop: "2rem" }}
-              onClick={onStartSession}
-            >
-              Sitzung starten
-            </Button>
+            <TasksList />
           </Box>
         </Box>
       </Box>
@@ -54,4 +39,4 @@ function HomeRoute() {
   );
 }
 
-export default HomeRoute;
+export default TasksRoute;
