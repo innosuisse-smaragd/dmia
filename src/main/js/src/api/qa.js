@@ -6,7 +6,7 @@ export const fetchQaAnswer = async (question) => {
 
   let config = {
     method: "post",
-    url: "https://dmia.public.medinflab.ti.bfh.ch/answer",
+    url: "https://dmia-qa.smaragd.ti.bfh.ch/answer",
     headers: {
       "Content-Type": "application/json",
     },

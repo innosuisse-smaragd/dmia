@@ -6,8 +6,8 @@ import { selectSelectedFontSize } from "../slices/themeSlice";
 
 function EndRoute() {
   const navigate = useNavigate();
-  const onEndSession = () => {
-    navigate("/home");
+  const onBackToTaskList = () => {
+    navigate("/tasks");
   };
   const fontSize = useSelector(selectSelectedFontSize);
 
@@ -35,17 +35,17 @@ function EndRoute() {
               paddingTop: "5rem",
             }}
           >
-            <h1>Dies ist das Ende der Testsitzung</h1>
+            <h1>Dies ist das Ende der Questionnaire</h1>
             <p>
-              Um eine neue Sitzung zu starten, klicken Sie bitte auf die
+              Um eine neue Aufgabe zu starten, klicken Sie bitte auf die
               Schaltfläche unten
             </p>
             <Button
               variant="contained"
               sx={{ marginTop: "2rem" }}
-              onClick={onEndSession}
+              onClick={onBackToTaskList}
             >
-              Neue Sitzung starten
+              Zurück zur Aufgabenliste
             </Button>
           </Box>
         </Box>

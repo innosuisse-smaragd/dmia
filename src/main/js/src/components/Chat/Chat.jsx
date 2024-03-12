@@ -17,21 +17,12 @@ function Chat() {
     objDiv.scrollIntoView();
   });
 
-  const questionnaire = [...onboarding, ...newQuestionnaire];
+  const questionnaire = [...onboarding];
 
   // Get first index of question that is not display
   let initialMessageindex = questionnaire.findIndex(
     (message) => message.type !== "display"
   );
-
-  // fetch('http://localhost:8081/api/v1/questionnaires/asd')
-  //     .then(response => response.json())
-  //     .then(data => console.log(data));
-
-  fetch('http://localhost:8081/dmia_war/api/v1/questionnaires/asd')
-      .then(response => response.json())
-      .then(data => console.log(data));
-
 
   const [currentMessageIndex, setCurrentMessageIndex] =
     useState(initialMessageindex);
