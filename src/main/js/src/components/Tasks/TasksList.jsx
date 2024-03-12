@@ -9,6 +9,7 @@ function TasksList() {
 
   useEffect(() => {
     const fetchTasksData = async () => {
+      // TODO ADD TOKEN
       const response = await fetchTasks();
 
       console.log(response);

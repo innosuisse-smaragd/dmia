@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchTasks = async () => {
+export const fetchTasks = async (token) => {
   let answer;
   let hasError = false;
 
@@ -8,7 +8,7 @@ export const fetchTasks = async () => {
     method: "get",
     url: "http://localhost:8081/api/v1/tasks",
     headers: {
-      "Content-Type": "application/json",
+      Authorization: "Bearer " + token.accessToken,
     },
   };
 
