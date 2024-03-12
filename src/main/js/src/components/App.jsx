@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectSelectedFontSize } from "../slices/themeSlice";
@@ -7,14 +6,11 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import Error from "./Error";
-import NavBar from "./Page/NavBar";
-
-import Page from "./Page/Page";
 import ChatRoute from "../routes/ChatRoute";
 import HomeRoute from "../routes/HomeRoute";
 import ReviewRoute from "../routes/ReviewRoute";
 import EndRoute from "../routes/EndRoute";
+import TasksRoute from "../routes/TasksRoute";
 
 function App() {
   // const [showChat, setShowChat] = useState(false);
@@ -27,6 +23,11 @@ function App() {
     {
       path: "/",
       element: <HomeRoute />,
+      errorElement: <HomeRoute />,
+    },
+    {
+      path: "/tasks",
+      element: <TasksRoute />,
       errorElement: <HomeRoute />,
     },
     {
