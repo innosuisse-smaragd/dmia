@@ -3,13 +3,34 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectSelectedFontSize } from "../slices/themeSlice";
 import NavBar from "../components/Page/NavBar";
+import { useState } from "react";
+import { login } from "../api/authentication";
+import { fetchTasks } from "../api/tasks";
 
 function HomeRoute() {
   const navigate = useNavigate();
+  const fontSize = useSelector(selectSelectedFontSize);
+  const [token, setToken] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const onLogin = async () => {
+    console.log("LOGIN WAS CLICKED");
+    const newToken = await login();
+    setToken(newToken);
+  };
+
+  const onFetchTasks = async () => {
+    console.log("FETCH TASKS WAS CLICKED");
+    const newTasks = await fetchTasks(token);
+    setTasks(newTasks);
+  };
+
+  console.log("Token:", token);
+  console.log("Tasks:", tasks);
+
   const onStartSession = () => {
     navigate("/tasks");
   };
-  const fontSize = useSelector(selectSelectedFontSize);
 
   return (
     <Box
@@ -35,17 +56,30 @@ function HomeRoute() {
               paddingTop: "5rem",
             }}
           >
-            <h1>Willkommen bei Mia</h1>
-            <p>
-              dieser Bildschirm dient zu Testzwecken. Um eine Sitzung zu
-              starten, klicken Sie bitte auf die Schaltfläche unten
-            </p>
+            <h1>
+              This is a placeholder and will be replaced by the onaboarding
+              process
+            </h1>
             <Button
               variant="contained"
               sx={{ marginTop: "2rem" }}
               onClick={onStartSession}
             >
-              Sitzung starten
+              Zu den Aufgaben gehen
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ marginTop: "2rem" }}
+              onClick={onLogin}
+            >
+              Test Login
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ marginTop: "2rem" }}
+              onClick={onFetchTasks}
+            >
+              Test fetching tasks
             </Button>
           </Box>
         </Box>

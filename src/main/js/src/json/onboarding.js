@@ -130,7 +130,7 @@ const onboarding = {
       ],
     },
     {
-      type: "display",
+      type: "final",
       text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
@@ -157,7 +157,7 @@ const onboarding = {
       ],
     },
     {
-      type: "display",
+      type: "final",
       text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
@@ -197,7 +197,7 @@ const onboarding = {
       ],
     },
     {
-      type: "display",
+      type: "final",
       text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
@@ -210,7 +210,7 @@ const onboarding = {
       ],
     },
     {
-      type: "display",
+      type: "final",
       text: "Guten Tag, Alex Müller! Ich konnte Sie erfolgreich erfassen.",
       enableWhen: [
         {
