@@ -1,4 +1,4 @@
-package org.bfh.smaragd.dmia.domain.task;
+package org.bfh.smaragd.dmia.domain.response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +16,4 @@ public class Contained {
     private List<Name> name;
     private String gender;
     private String birthDate;
-    private List<DeviceName> deviceName;
 }
