@@ -1,6 +1,5 @@
-import { Stack, Avatar, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { saveAs } from "file-saver";
-import { blue } from "@mui/material/colors";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import newQuestionnaire from "../../json/questionnaire_1.5";
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import "./chat.css";
 import { useNavigate } from "react-router-dom";
 import { fetchQaAnswer } from "../../api/qa";
+import ChatHeader from "./ChatHeader";
 
 // Container component for the chat section of the app
 function Chat() {
@@ -373,20 +373,7 @@ function Chat() {
   return (
     <Stack sx={{ width: "100%", maxWidth: 1200, px: 4 }}>
       {/* ----- Chat Header ----- */}
-      <Stack
-        direction="row"
-        alignItems="center"
-        sx={{
-          borderBottom: "solid 1px #ddd",
-          p: 1,
-          pb: 2,
-        }}
-      >
-        <Avatar sx={{ bgcolor: blue[700] }}>M</Avatar>
-        <Typography variant="h6" sx={{ marginLeft: 1 }}>
-          Mia
-        </Typography>
-      </Stack>
+      <ChatHeader />
 
       {/* ----- Chat Content ----- */}
       <Stack

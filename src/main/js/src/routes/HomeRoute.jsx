@@ -47,42 +47,7 @@ function HomeRoute() {
         <Box height="10%">
           <NavBar />
         </Box>
-        <Box display="flex" justifyContent="center" height="90%">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              paddingTop: "5rem",
-            }}
-          >
-            <h1>
-              This is a placeholder and will be replaced by the onaboarding
-              process
-            </h1>
-            <Button
-              variant="contained"
-              sx={{ marginTop: "2rem" }}
-              onClick={onStartSession}
-            >
-              Zu den Aufgaben gehen
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ marginTop: "2rem" }}
-              onClick={onLogin}
-            >
-              Test Login
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ marginTop: "2rem" }}
-              onClick={onFetchTasks}
-            >
-              Test fetching tasks
-            </Button>
-          </Box>
-        </Box>
+        <Box display="flex" justifyContent="center" height="90%"></Box>
       </Box>
     </Box>
   );
