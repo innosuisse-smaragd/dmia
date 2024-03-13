@@ -4,3 +4,5 @@ server:
 dmia:
   security:
     tokenExpirationMin: 60
+  webClient:
+    updateTaskUrl: http://51.107.41.3:8080/smaragd/fhir/Task/
