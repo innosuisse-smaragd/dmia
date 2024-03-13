@@ -8,7 +8,7 @@ export const fetchTasks = async (token) => {
     method: "get",
     url: "http://localhost:8081/api/v1/tasks",
     headers: {
-      Authorization: "Bearer " + token.accessToken,
+      Authorization: "Bearer " + token,
     },
   };
 
