@@ -11,53 +11,40 @@ import java.util.*;
 @AllArgsConstructor
 public class TaskRepository {
 
-    //Key: username
-    //Value: set of ids
-    private final Map<String, Set<String>> usernameLookup = new HashMap<>();
-
-    private final Map<String, Task> tasks = new HashMap<>();
+    private final Map<TaskKey, Task> tasks = new HashMap<>();
 
     public void save(String username, Task task) {
         var id = task.getId();
-        tasks.put(id, task);
-        updateUsernameLookup(username, id);
-    }
-
-    private void updateUsernameLookup(String username, String id) {
-        var ids = usernameLookup.getOrDefault(username, new HashSet<>());
-        ids.add(id);
-        usernameLookup.put(username, ids);
+        var key = new TaskKey(username, id);
+        tasks.put(key, task);
     }
 
     public Optional<Task> findByUsernameAndId(String username, String id) {
-        Task task = null;
         if (username != null && id != null) {
-            boolean idBelongToUsername = usernameLookup.getOrDefault(username, Collections.emptySet()).contains(id);
-            if (idBelongToUsername) {
-                task = tasks.get(id);
-            }
+            return tasks
+                    .entrySet()
+                    .stream()
+                    .filter(key -> username.equals(key.getKey().username()) && id.equals(key.getKey().taskId()))
+                    .map(Map.Entry::getValue)
+                    .findAny();
         }
-        return Optional.ofNullable(task);
+        return Optional.empty();
     }
 
     public List<Task> findByUsername(String username) {
-        List<Task> results = Collections.emptyList();
         if (username != null) {
-            results = usernameLookup
-                    .getOrDefault(username, Collections.emptySet())
+            return tasks
+                    .entrySet()
                     .stream()
-                    .map(tasks::get)
+                    .filter(key -> username.equals(key.getKey().username()))
+                    .map(Map.Entry::getValue)
                     .toList();
         }
-        return results;
+        return Collections.emptyList();
     }
 
-    public void remove(String username, String id) {
-        findByUsernameAndId(username, id).ifPresent(entity -> {
-            usernameLookup.getOrDefault(username, Collections.emptySet()).remove(id);
-            tasks.remove(id);
-        });
-    }
 
+    private record TaskKey(String username, String taskId) {
+    }
 
 }
