@@ -27,3 +27,23 @@ export const fetchTaskQuestionnaire = async (taskId, token) => {
 
   return response.data;
 };
+
+export const postQuestionnaireResponse = async (
+  questionnaireResponse,
+  taskId,
+  token
+) => {
+  let config = {
+    method: "post",
+    url: `http://localhost:8081/api/v1/tasks/${taskId}/responses/`,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    data: JSON.stringify(questionnaireResponse),
+  };
+
+  const response = axios.request(config);
+
+  console.log(response);
+};

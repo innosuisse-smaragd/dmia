@@ -11,12 +11,11 @@ function TaskCard({ task, authToken }) {
   const navigate = useNavigate();
 
   const onStartTask = async (taskId) => {
-    const questionnaire = await fetchTaskQuestionnaire(taskId, authToken);
-    console.log(questionnaire);
+    const serverQuestionnaire = await fetchTaskQuestionnaire(taskId, authToken);
 
     let newQuestionnaire = [];
 
-    const questionnaireItems = questionnaire[0].item;
+    const questionnaireItems = serverQuestionnaire[0].item;
 
     const handleItemType = (item) => {
       if (item.type === "group") {
@@ -30,9 +29,9 @@ function TaskCard({ task, authToken }) {
       handleItemType(item);
     });
 
-    console.log(newQuestionnaire);
-
-    navigate("/chat", { state: { newQuestionnaire } });
+    navigate("/chat", {
+      state: { newQuestionnaire, serverQuestionnaire, task },
+    });
   };
 
   return (

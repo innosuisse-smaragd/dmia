@@ -11,7 +11,7 @@ import ChatHeader from "./ChatHeader";
 // Container component for the chat section of the app
 function Chat() {
   const { state } = useLocation();
-  const { newQuestionnaire } = state;
+  const { newQuestionnaire, serverQuestionnaire, task } = state;
 
   useEffect(() => {
     let objDiv = document.getElementById("auto-scroll");
@@ -288,7 +288,9 @@ function Chat() {
     saveAs(blob, "dmia_logs.json");
 
     if (message === true) {
-      navigate("/uberprufen", { state: { displayedMessages } });
+      navigate("/uberprufen", {
+        state: { displayedMessages, serverQuestionnaire, task },
+      });
     }
   };
 
