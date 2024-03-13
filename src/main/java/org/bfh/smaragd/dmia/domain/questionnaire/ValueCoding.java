@@ -5,6 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ValueAttachment {
-    private String url;
+public class ValueCoding {
+    private String display;
 }

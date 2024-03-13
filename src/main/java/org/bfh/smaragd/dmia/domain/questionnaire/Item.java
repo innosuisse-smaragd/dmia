@@ -8,13 +8,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Item {
-    private List<Extension> extension;
     private String linkId;
     private String text;
     private String type;
-    private List<AnswerOption> answerOption;
-    private String definition;
     private boolean required;
     private List<Item> item;
-    private String answerValueSet;
+    private List<Extension> extension;
+    private boolean repeats;
+    private List<AnswerOption> answerOption;
+    private List<EnableWhen> enableWhen;
 }

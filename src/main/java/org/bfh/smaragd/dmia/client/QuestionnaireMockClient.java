@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import lombok.extern.slf4j.Slf4j;
 import org.bfh.smaragd.dmia.Profiles;
 import org.bfh.smaragd.dmia.domain.questionnaire.Questionnaire;
+import org.bfh.smaragd.dmia.domain.response.Response;
+import org.bfh.smaragd.dmia.domain.task.Task;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
@@ -23,9 +25,11 @@ public class QuestionnaireMockClient implements QuestionnaireClient {
     @Value("classpath:data/questionnaire.json")
     private Resource taskResource;
 
+    @Override
     public Optional<Questionnaire> findByUrl(String url) {
         return Optional.ofNullable(loadQuestionnaire());
     }
+
 
     private Questionnaire loadQuestionnaire() {
         ObjectMapper mapper = new ObjectMapper();
@@ -39,4 +43,16 @@ public class QuestionnaireMockClient implements QuestionnaireClient {
         }
         return null;
     }
+
+    @Override
+    public String createResponse(String url, Response response) {
+        log.info("Post response on {}", url);
+        return "";
+    }
+
+    @Override
+    public void updateTask(Task task) {
+        log.info("update task id {}", task.getId());
+    }
+
 }

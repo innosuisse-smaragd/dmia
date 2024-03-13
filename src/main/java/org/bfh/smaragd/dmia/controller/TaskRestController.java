@@ -3,6 +3,8 @@ package org.bfh.smaragd.dmia.controller;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
+import org.bfh.smaragd.dmia.domain.questionnaire.Questionnaire;
+import org.bfh.smaragd.dmia.domain.response.Response;
 import org.bfh.smaragd.dmia.domain.task.Task;
 import org.bfh.smaragd.dmia.service.QuestionnaireService;
 import org.bfh.smaragd.dmia.service.TaskSearchService;
@@ -41,6 +43,21 @@ public class TaskRestController {
     public ResponseEntity<Task> findBy(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails, @PathVariable String id) {
         var oTask = taskSearchService.findByUsernameAndId(userDetails.getUsername(), id);
         return ResponseEntity.of(oTask);
+    }
+
+    @GetMapping("/{id}/questionnaires")
+    @PreAuthorize("isAuthenticated()")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public List<Questionnaire> findQuestionnaires(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails, @PathVariable String id) {
+        return questionnaireService.findByUsernameAndTaskId(userDetails.getUsername(), id);
+    }
+
+
+    @PostMapping("/{id}/responses/")
+    @PreAuthorize("isAuthenticated()")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public void createResponse(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails, @PathVariable String id, @RequestBody Response response) {
+        questionnaireService.createResponse(userDetails.getUsername(), id, response);
     }
 
 }

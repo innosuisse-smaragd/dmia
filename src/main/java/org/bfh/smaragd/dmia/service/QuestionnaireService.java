@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.bfh.smaragd.dmia.client.QuestionnaireClient;
 import org.bfh.smaragd.dmia.domain.common.Coding;
 import org.bfh.smaragd.dmia.domain.questionnaire.Questionnaire;
+import org.bfh.smaragd.dmia.domain.response.Response;
 import org.bfh.smaragd.dmia.domain.task.Contained;
 import org.bfh.smaragd.dmia.domain.task.Input;
+import org.bfh.smaragd.dmia.domain.task.Output;
 import org.bfh.smaragd.dmia.domain.task.Task;
 import org.bfh.smaragd.dmia.domain.user.User;
 import org.bfh.smaragd.dmia.repository.QuestionnaireRepository;
@@ -23,6 +25,8 @@ import java.util.Optional;
 public class QuestionnaireService {
 
     private static final String CODE_QUESTIONNAIRE = "questionnaire";
+    private static final String CODE_RESPONSE_ENDPOINT = "response-endpoint";
+    private static final String CODE_QUESTIONNAIRE_RESPONSE = "questionnaire-response";
     private static final String RESOURCE_TYPE_PATIENT = "Patient";
 
     private final TaskRepository taskRepository;
@@ -32,11 +36,11 @@ public class QuestionnaireService {
 
     public void initialize(Task task) {
         var oUser = saveUserIfPresent(task);
-        if(oUser.isPresent()){
+        if (oUser.isPresent()) {
             var user = oUser.get();
             taskRepository.save(user.getUsername(), task);
-            task.getInput().forEach(input -> this.loadQuestionnaireIfInputIsQuestionnaire(user.getUsername(), input));
-        }else {
+            task.getInput().forEach(input -> loadQuestionnaireIfInputIsQuestionnaire(user.getUsername(), task.getId(), input));
+        } else {
             log.warn("user is not present for task (id:{})", task.getId());
         }
     }
@@ -63,9 +67,9 @@ public class QuestionnaireService {
         return Optional.ofNullable(user);
     }
 
-    private void loadQuestionnaireIfInputIsQuestionnaire(String username, Input input) {
+    private void loadQuestionnaireIfInputIsQuestionnaire(String username, String taskId, Input input) {
         if (isQuestionnaire(input)) {
-            loadQuestionnaire(username, input);
+            loadQuestionnaire(username, taskId, input);
         }
     }
 
@@ -73,30 +77,75 @@ public class QuestionnaireService {
         return input.getType().getCoding().stream().map(Coding::getCode).anyMatch(CODE_QUESTIONNAIRE::equals);
     }
 
-    private void loadQuestionnaire(String username, Input input) {
+    private void loadQuestionnaire(String username, String taskId, Input input) {
         String url = input.getValueCanonical();
         log.info("Questionnaire found (url={})", url);
         questionnaireClient
                 .findByUrl(url)
-                .ifPresentOrElse(questionnaire -> addQuestionnaire(username, questionnaire), () -> logEmptyQuestionnaire(url));
+                .ifPresentOrElse(questionnaire -> addQuestionnaire(username, taskId, questionnaire), () -> logEmptyQuestionnaire(url));
     }
 
-    private void addQuestionnaire(String username, Questionnaire questionnaire) {
-        log.info("Add questionnaire (id={})", questionnaire.getId());
-        questionnaireRepository.save(username, questionnaire);
+    private void addQuestionnaire(String username, String taskId, Questionnaire questionnaire) {
+        log.info("Add questionnaire (taskId={})", taskId);
+        questionnaireRepository.save(username, taskId, questionnaire);
     }
 
     private void logEmptyQuestionnaire(String url) {
         log.warn("No questionnaire found at url={}", url);
     }
 
-    public Optional<Questionnaire> findByUsernameAndId(String username, String id) {
-        return questionnaireRepository.findByUsernameAndId(username, id);
+    public List<Questionnaire> findByUsernameAndTaskId(String username, String taskId) {
+        log.info("Find questionnaires by username ({}) and task id ({})", username, taskId);
+        return questionnaireRepository.findByUsernameAndTaskId(username, taskId);
     }
 
-    public List<Questionnaire> findByUsername(String username) {
-        log.info("Find questionnaires by username ({})", username);
-        return questionnaireRepository.findByUsername(username);
+    public void createResponse(String username, String taskId, Response response) {
+        log.info("Create response for username ({}) and task id ({})", username, taskId);
+        taskRepository.findByUsernameAndId(username, taskId)
+                .ifPresent(task -> task.getInput().forEach(input -> sendResponseIfResponseEndpoint(username, task, input, response)));
+    }
+
+    private void sendResponseIfResponseEndpoint(String username, Task task, Input input, Response response) {
+        if (isResponseEndpoint(input)) {
+            sendResponse(username, task, input, response);
+        }
+    }
+
+    private boolean isResponseEndpoint(Input input) {
+        return input.getType().getCoding().stream().map(Coding::getCode).anyMatch(CODE_RESPONSE_ENDPOINT::equals);
+    }
+
+    private void sendResponse(String username, Task task, Input input, Response response) {
+        String url = input.getValueUrl();
+        log.info("Response url found (url={})", url);
+        String responseUrl = questionnaireClient.createResponse(url, response);
+        updateQuestionnaireResponse(task, responseUrl);
+        questionnaireClient.updateTask(task);
+        cleanUpTask(username, task);
+    }
+
+    private void updateQuestionnaireResponse(Task task, String responseUrl) {
+        task.getOutput().forEach(output -> sendResponseIfResponseEndpoint(output, responseUrl));
+    }
+
+    private void sendResponseIfResponseEndpoint(Output output, String url) {
+        if (isQuestionnaireResponse(output)) {
+            output.getValueReference().setReference(url);
+        }
+    }
+
+    private boolean isQuestionnaireResponse(Output output) {
+        return output.getType().getCoding().stream().map(Coding::getCode).anyMatch(CODE_QUESTIONNAIRE_RESPONSE::equals);
+    }
+
+
+    private void cleanUpTask(String username, Task task) {
+        questionnaireRepository.removeByUsernameAndTaskId(username, task.getId());
+        taskRepository.removeByUsernameAndTaskId(username, task.getId());
+        var tasks = taskRepository.findByUsername(username);
+        if(tasks.isEmpty()){
+            userService.removeByUsername(username);
+        }
     }
 
 }
