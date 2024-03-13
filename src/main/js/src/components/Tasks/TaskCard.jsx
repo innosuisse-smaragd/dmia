@@ -4,16 +4,51 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
+import { fetchTaskQuestionnaire } from "../../api/tasks";
 
-function TaskCard({ task }) {
-  console.log(task.contained);
+function TaskCard({ task, authToken }) {
+  const navigate = useNavigate();
+
+  const onStartTask = async (taskId) => {
+    const serverQuestionnaire = await fetchTaskQuestionnaire(taskId, authToken);
+
+    let newQuestionnaire = [];
+
+    const questionnaireItems = serverQuestionnaire[0].item;
+
+    const handleItemType = (item) => {
+      if (item.type === "group") {
+        item.item.forEach((subItem) => handleItemType(subItem));
+      } else {
+        newQuestionnaire.push(item);
+      }
+    };
+
+    questionnaireItems.forEach((item) => {
+      handleItemType(item);
+    });
+
+    navigate("/chat", {
+      state: { newQuestionnaire, serverQuestionnaire, task },
+    });
+  };
 
   return (
     <>
-      <Card>
-        <CardContent sx={{ pl: 3, pr: 10, pt: 3, minWidth: 200 }}>
+      <Card
+        sx={{
+          mx: 2,
+          width: 350,
+          mt: 5,
+          position: "relative",
+          pb: 8,
+          maxWidth: 350,
+        }}
+      >
+        <CardContent sx={{ pl: 3, pr: 10, pt: 3 }}>
           <Typography variant="h4" sx={{ mb: 1 }}>
-            Task
+            {task.id}
           </Typography>
           <Typography>
             <b>Vornamen: </b>
@@ -32,8 +67,21 @@ function TaskCard({ task }) {
             {task.contained[0].gender}
           </Typography>
         </CardContent>
-        <CardActions sx={{ display: "flex", flexDirection: "column", pb: 3 }}>
-          <Button size="medium" variant="contained">
+        <CardActions
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            pb: 3,
+            position: "absolute",
+            bottom: 0,
+            right: 82,
+          }}
+        >
+          <Button
+            size="medium"
+            variant="outlined"
+            onClick={() => onStartTask(task.id)}
+          >
             Aufgabe starten
           </Button>
         </CardActions>
@@ -44,6 +92,7 @@ function TaskCard({ task }) {
 
 TaskCard.propTypes = {
   task: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
 };
 
 export default TaskCard;

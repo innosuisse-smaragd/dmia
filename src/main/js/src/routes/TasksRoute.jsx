@@ -18,22 +18,11 @@ function TasksRoute() {
         }),
       }}
     >
-      <Box width="100%" height="100%" padding="5rem">
+      <Box padding="5rem">
         <Box height="10%">
           <NavBar />
         </Box>
-        <Box display="flex" justifyContent="center" height="90%">
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              paddingTop: "5rem",
-            }}
-          >
-            <TasksList />
-          </Box>
-        </Box>
+        <TasksList />
       </Box>
     </Box>
   );

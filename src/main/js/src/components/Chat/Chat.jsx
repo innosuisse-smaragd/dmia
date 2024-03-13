@@ -2,22 +2,23 @@ import { Stack, Typography } from "@mui/material";
 import { saveAs } from "file-saver";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
-import newQuestionnaire from "../../json/questionnaire_1.5";
-import onboarding from "../../json/onboarding";
 import { useEffect, useState } from "react";
 import "./chat.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchQaAnswer } from "../../api/qa";
 import ChatHeader from "./ChatHeader";
 
 // Container component for the chat section of the app
 function Chat() {
+  const { state } = useLocation();
+  const { newQuestionnaire, serverQuestionnaire, task } = state;
+
   useEffect(() => {
     let objDiv = document.getElementById("auto-scroll");
     objDiv.scrollIntoView();
   });
 
-  const questionnaire = [...onboarding];
+  const questionnaire = [...newQuestionnaire];
 
   // Get first index of question that is not display
   let initialMessageindex = questionnaire.findIndex(
@@ -28,12 +29,12 @@ function Chat() {
     useState(initialMessageindex);
 
   const [displayedMessages, setDisplayedMessages] = useState(
-    questionnaire.slice(0, currentMessageIndex + 1).map((question, key) => {
+    questionnaire.slice(0, currentMessageIndex + 1).map((question) => {
       return { ...question, user: false, typing: true };
     })
   );
 
-  const [startTime, setStartTime] = useState(new Date());
+  const [startTime] = useState(new Date());
 
   const [logs, setLogs] = useState({ logs: [] });
 
@@ -287,7 +288,9 @@ function Chat() {
     saveAs(blob, "dmia_logs.json");
 
     if (message === true) {
-      navigate("/uberprufen", { state: { displayedMessages } });
+      navigate("/uberprufen", {
+        state: { displayedMessages, serverQuestionnaire, task },
+      });
     }
   };
 
