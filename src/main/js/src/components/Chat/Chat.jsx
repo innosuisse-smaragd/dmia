@@ -6,12 +6,15 @@ import newQuestionnaire from "../../json/questionnaire_1.5";
 import onboarding from "../../json/onboarding";
 import { useEffect, useState } from "react";
 import "./chat.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchQaAnswer } from "../../api/qa";
 import ChatHeader from "./ChatHeader";
 
 // Container component for the chat section of the app
 function Chat() {
+  const { state } = useLocation();
+  const { taskId } = state;
+
   useEffect(() => {
     let objDiv = document.getElementById("auto-scroll");
     objDiv.scrollIntoView();
