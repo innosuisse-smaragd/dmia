@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { fetchTasks } from "../../api/tasks";
 import TaskCard from "./TaskCard";
+import { useSelector } from "react-redux";
+import { selectAuthToken } from "../../slices/tokenSlice";
 
 function TasksList() {
   const [tasks, setTasks] = useState([]);
-
-  console.log(tasks);
+  const authToken = useSelector(selectAuthToken);
 
   useEffect(() => {
     const fetchTasksData = async () => {
-      // TODO ADD TOKEN
-      const response = await fetchTasks();
-
-      console.log(response);
+      const response = await fetchTasks(authToken);
 
       setTasks(response);
     };
 
-    fetchTasksData();
-  }, []);
+    if (authToken !== "") {
+      fetchTasksData();
+    }
+  }, [authToken]);
 
   return (
     <>

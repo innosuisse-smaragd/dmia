@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Stack, Typography } from "@mui/material";
 import ChatHeader from "../Chat/ChatHeader";
 import ChatInput from "../Chat/ChatInput";
-import onboarding from "../../json/onboarding_2";
-import { useNavigate } from "react-router-dom";
 import ChatMessage from "../Chat/ChatMessage";
 import { checkName, login } from "../../api/authentication";
+import onboarding from "../../json/onboarding_2";
+import { changeAuthToken } from "../../slices/tokenSlice";
 
 const rightNameMessage = {
   type: "login",
@@ -44,6 +46,7 @@ function Onboarding() {
   const [gaveWrongAnswer, setGaveWrongAnswer] = useState(false);
   const [userName, setUserName] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const questionnaire = onboarding;
   let messageDelay = 2000;
 
@@ -265,12 +268,15 @@ function Onboarding() {
       username: userName,
       password: `${year}-${month}-${day}`,
     });
+
+    console.log(loginResult);
+
     let nextQuestion;
 
     if (loginResult.status === 200) {
       nextQuestion = rightLoginMessage(userName);
       setGaveWrongAnswer(false);
-      setUserName(message.trim());
+      dispatch(changeAuthToken(loginResult.data.accessToken));
     } else if (loginResult.status !== 200 && !gaveWrongAnswer) {
       nextQuestion = wrongLoginMessage;
       setGaveWrongAnswer(true);
