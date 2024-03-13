@@ -35,7 +35,7 @@ function EndRoute() {
               paddingTop: "5rem",
             }}
           >
-            <h1>Dies ist das Ende der Questionnaire</h1>
+            <h1>Dies ist das Ende der Befragung</h1>
             <p>
               Um eine neue Aufgabe zu starten, klicken Sie bitte auf die
               Schaltfläche unten
