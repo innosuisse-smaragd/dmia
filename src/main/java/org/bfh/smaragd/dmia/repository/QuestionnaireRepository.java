@@ -39,7 +39,7 @@ public class QuestionnaireRepository {
     }
 
     @Data
-    private class QuestionnaireKey {
+    private static class QuestionnaireKey {
         private final String username;
         private final String taskId;
     }
