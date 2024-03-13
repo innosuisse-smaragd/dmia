@@ -38,9 +38,6 @@ function ReviewRoute() {
   });
   const fontSize = useSelector(selectSelectedFontSize);
 
-  console.log(chatQuestions);
-  console.log(userReplies);
-
   const handleEndQuestionnaire = () => {
     navigate("/end");
   };
@@ -80,8 +77,6 @@ function ReviewRoute() {
                   const answer = userReplies.filter((reply) => {
                     return reply.questionLinkId === question.linkId;
                   })[0];
-
-                  console.log(answer);
 
                   return (
                     <div key={key}>

@@ -61,7 +61,7 @@ function Onboarding() {
     useState(initialMessageindex);
 
   const [displayedMessages, setDisplayedMessages] = useState(
-    questionnaire.slice(0, currentMessageIndex + 1).map((question, key) => {
+    questionnaire.slice(0, currentMessageIndex + 1).map((question) => {
       return { ...question, user: false, typing: true };
     })
   );
@@ -256,19 +256,16 @@ function Onboarding() {
   };
 
   const handleLogin = async (message) => {
-    console.log("login", typeof message);
     const year = message.split(".")[2];
     const month = message.split(".")[1];
     const day = message.split(".")[0];
-    console.log(year, month, day);
+
     const currentLinkId = questionnaire[currentMessageIndex].linkId;
     const loginResult = await login({
       username: userName,
       password: `${year}-${month}-${day}`,
     });
     let nextQuestion;
-
-    console.log(loginResult);
 
     if (loginResult.status === 200) {
       nextQuestion = rightLoginMessage(userName);

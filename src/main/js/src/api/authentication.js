@@ -3,9 +3,6 @@ import axios from "axios";
 export const login = async (credentials) => {
   let returnData;
   let hasError;
-  // TODO: ADD ERROR HANDLING
-
-  console.log(credentials);
 
   let config = {
     method: "post",
