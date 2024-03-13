@@ -5,12 +5,34 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { fetchTaskQuestionnaire } from "../../api/tasks";
 
-function TaskCard({ task }) {
+function TaskCard({ task, authToken }) {
   const navigate = useNavigate();
 
-  const onStartTask = (taskId) => {
-    navigate("/chat", { state: { taskId } });
+  const onStartTask = async (taskId) => {
+    const questionnaire = await fetchTaskQuestionnaire(taskId, authToken);
+    console.log(questionnaire);
+
+    let newQuestionnaire = [];
+
+    const questionnaireItems = questionnaire[0].item;
+
+    const handleItemType = (item) => {
+      if (item.type === "group") {
+        item.item.forEach((subItem) => handleItemType(subItem));
+      } else {
+        newQuestionnaire.push(item);
+      }
+    };
+
+    questionnaireItems.forEach((item) => {
+      handleItemType(item);
+    });
+
+    console.log(newQuestionnaire);
+
+    navigate("/chat", { state: { newQuestionnaire } });
   };
 
   return (
@@ -71,6 +93,7 @@ function TaskCard({ task }) {
 
 TaskCard.propTypes = {
   task: PropTypes.object.isRequired,
+  authToken: PropTypes.string.isRequired,
 };
 
 export default TaskCard;

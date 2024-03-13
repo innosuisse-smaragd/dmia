@@ -53,7 +53,7 @@ function TasksList() {
           }}
         >
           {tasks.map((task, index) => {
-            return <TaskCard key={index} task={task} />;
+            return <TaskCard key={index} task={task} authToken={authToken} />;
           })}
         </Container>
       ) : (
