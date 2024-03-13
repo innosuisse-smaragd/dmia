@@ -1,12 +1,9 @@
 import axios from "axios";
 
-export const fetchTasks = async (token) => {
+export const fetchTasks = async () => {
   const config = {
     method: "get",
     url: "http://localhost:8081/api/v1/tasks",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
   };
 
   const response = await axios.request(config);
@@ -15,6 +12,8 @@ export const fetchTasks = async (token) => {
 };
 
 export const fetchTaskQuestionnaire = async (taskId, token) => {
+  console.log(token);
+
   const config = {
     method: "get",
     url: `http://localhost:8081/api/v1/tasks/${taskId}/questionnaires`,

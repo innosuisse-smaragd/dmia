@@ -20,4 +20,8 @@ public class TaskSearchService {
     public List<Task> findByUsername(String username) {
         return taskRepository.findByUsername(username);
     }
+
+    public List<Task> findAll() {
+        return taskRepository.findAll();
+    }
 }

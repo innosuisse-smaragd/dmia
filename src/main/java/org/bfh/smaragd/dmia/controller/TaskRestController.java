@@ -30,10 +30,8 @@ public class TaskRestController {
     }
 
     @GetMapping
-    @PreAuthorize("isAuthenticated()")
-    @SecurityRequirement(name = "Bearer Authentication")
-    public List<Task> findAll(@Parameter(hidden = true) @AuthenticationPrincipal UserDetails userDetails) {
-        return taskSearchService.findByUsername(userDetails.getUsername());
+    public List<Task> findAll() {
+        return taskSearchService.findAll();
     }
 
 

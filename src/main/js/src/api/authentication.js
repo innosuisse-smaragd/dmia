@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const login = async (credentials) => {
+  console.log(credentials);
   let returnData;
   let hasError;
 

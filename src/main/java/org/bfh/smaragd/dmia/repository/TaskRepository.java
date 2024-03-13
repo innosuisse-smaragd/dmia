@@ -44,6 +44,15 @@ public class TaskRepository {
         return Collections.emptyList();
     }
 
+    public List<Task> findAll() {
+        return tasks
+                .entrySet()
+                .stream()
+                .map(Map.Entry::getValue)
+                .toList();
+        
+    }
+
     public void removeByUsernameAndTaskId(String username, String taskId) {
         var key = new TaskKey(username, taskId);
         tasks.remove(key);

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectSelectedFontSize } from "../slices/themeSlice";
 import NavBar from "../components/Page/NavBar";
 import Onboarding from "../components/Onboarding/Onboarding";
+import TasksList from "../components/Tasks/TasksList";
 
 function HomeRoute() {
   const fontSize = useSelector(selectSelectedFontSize);
@@ -18,13 +19,11 @@ function HomeRoute() {
         }),
       }}
     >
-      <Box width="100%" height="100%">
+      <Box padding="5rem">
         <Box height="10%">
           <NavBar />
         </Box>
-        <Box display="flex" justifyContent="center" height="90%">
-          <Onboarding />
-        </Box>
+        <TasksList />
       </Box>
     </Box>
   );

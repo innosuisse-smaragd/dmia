@@ -6,12 +6,21 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { fetchTaskQuestionnaire } from "../../api/tasks";
+import { login } from "../../api/authentication";
 
-function TaskCard({ task, authToken }) {
+function TaskCard({ task }) {
   const navigate = useNavigate();
 
   const onStartTask = async (taskId) => {
-    const serverQuestionnaire = await fetchTaskQuestionnaire(taskId, authToken);
+    const username = `${task.contained[0].name[0].given} ${task.contained[0].name[0].family}`;
+    const authToken = await login({
+      username,
+      password: task.contained[0].birthDate,
+    });
+    const serverQuestionnaire = await fetchTaskQuestionnaire(
+      taskId,
+      authToken.data.accessToken
+    );
 
     let newQuestionnaire = [];
 
@@ -92,7 +101,6 @@ function TaskCard({ task, authToken }) {
 
 TaskCard.propTypes = {
   task: PropTypes.object.isRequired,
-  authToken: PropTypes.string.isRequired,
 };
 
 export default TaskCard;

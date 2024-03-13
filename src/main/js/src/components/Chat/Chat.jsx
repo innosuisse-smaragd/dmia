@@ -6,19 +6,55 @@ import { useEffect, useState } from "react";
 import "./chat.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchQaAnswer } from "../../api/qa";
+import onboarding from "../../json/onboarding_2";
 import ChatHeader from "./ChatHeader";
+import { checkName, login } from "../../api/authentication";
+
+const rightNameMessage = {
+  type: "login",
+  text: "Ich habe Sie gefunden. Bitte nennen Sie mir nun Ihr Geburtsdatum (TT.MM.JJJJ).",
+};
+
+const wrongNameMessage = {
+  type: "checkName",
+  text: "Der von Ihnen eingegebene Name war falsch. Bitte versuche Sie es erneut.",
+};
+
+const endNameMessage = {
+  type: "end",
+  text: "Ich konnte Sie nicht finden. Bitte überprüfen Sie, ob Sie Ihren Namen richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+};
+
+const rightLoginMessage = (userName) => {
+  return {
+    type: "display",
+    text: `Guten Tag, ${userName}! Ich konnte Sie erfolgreich erfassen.`,
+  };
+};
+
+const wrongLoginMessage = {
+  type: "login",
+  text: "Das von Ihnen eingegebene Datum war falsch. Bitte versuche Sie es erneut.",
+};
+
+const endLoginMessage = {
+  type: "end",
+  text: "Ich konnte Sie nicht anhand Ihres Geburtsdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+};
 
 // Container component for the chat section of the app
 function Chat() {
   const { state } = useLocation();
   const { newQuestionnaire, serverQuestionnaire, task } = state;
+  const [gaveWrongAnswer, setGaveWrongAnswer] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     let objDiv = document.getElementById("auto-scroll");
     objDiv.scrollIntoView();
   });
 
-  const questionnaire = [...newQuestionnaire];
+  const [questionnaire, setQuestionnaire] = useState(onboarding);
 
   // Get first index of question that is not display
   let initialMessageindex = questionnaire.findIndex(
@@ -89,6 +125,7 @@ function Chat() {
   };
 
   const handleNewMessage = (message) => {
+    console.log(questionnaire);
     let indexIncrement = 1;
     const currentLinkId = questionnaire[currentMessageIndex].linkId;
 
@@ -222,6 +259,96 @@ function Chat() {
     setCurrentMessageIndex(currentMessageIndex + indexIncrement);
   };
 
+  const handleCheckName = async (message) => {
+    const currentLinkId = questionnaire[currentMessageIndex].linkId;
+    const rightName = await checkName(message.trim());
+    let nextQuestion;
+
+    if (rightName) {
+      nextQuestion = rightNameMessage;
+      setGaveWrongAnswer(false);
+      setUserName(message.trim());
+    } else if (!rightName && !gaveWrongAnswer) {
+      nextQuestion = wrongNameMessage;
+      setGaveWrongAnswer(true);
+    } else if (!rightName && gaveWrongAnswer) {
+      nextQuestion = endNameMessage;
+    }
+
+    let modifiedDisplayMessages = displayedMessages;
+
+    if (message !== true) {
+      modifiedDisplayMessages = displayedMessages.map((modifiedMessage) => ({
+        ...modifiedMessage,
+        typing: false,
+      }));
+    }
+
+    setDisplayedMessages([
+      ...modifiedDisplayMessages,
+      {
+        type: "text",
+        user: true,
+        text: message.trim(),
+        questionLinkId: currentLinkId,
+        typing: false,
+      },
+      {
+        ...nextQuestion,
+        typing: true,
+      },
+    ]);
+  };
+
+  const handleLogin = async (message) => {
+    const year = message.split(".")[2];
+    const month = message.split(".")[1];
+    const day = message.split(".")[0];
+
+    const currentLinkId = questionnaire[currentMessageIndex].linkId;
+    const loginResult = await login({
+      username: userName,
+      password: `${year}-${month}-${day}`,
+    });
+
+    let nextQuestion;
+
+    if (loginResult.status === 200) {
+      nextQuestion = rightLoginMessage(userName);
+      setQuestionnaire([...questionnaire, ...newQuestionnaire]);
+      setGaveWrongAnswer(false);
+    } else if (loginResult.status !== 200 && !gaveWrongAnswer) {
+      nextQuestion = wrongLoginMessage;
+      setGaveWrongAnswer(true);
+    } else if (loginResult.status !== 200 && gaveWrongAnswer) {
+      nextQuestion = endLoginMessage;
+    }
+
+    let modifiedDisplayMessages = displayedMessages;
+
+    if (message !== true) {
+      modifiedDisplayMessages = displayedMessages.map((modifiedMessage) => ({
+        ...modifiedMessage,
+        typing: false,
+      }));
+    }
+
+    setDisplayedMessages([
+      ...modifiedDisplayMessages,
+      {
+        type: "text",
+        user: true,
+        text: message.trim(),
+        questionLinkId: currentLinkId,
+        typing: false,
+      },
+      {
+        ...nextQuestion,
+        typing: true,
+      },
+    ]);
+  };
+
   const handleNewQA = (message) => {
     let modifiedDisplayMessages = displayedMessages;
     const currentTime = new Date();
@@ -298,6 +425,33 @@ function Chat() {
     const currentMessage = displayedMessages[displayedMessages.length - 1];
 
     switch (currentMessage.type) {
+      case "checkName":
+        return (
+          <ChatInput
+            onClick={handleCheckName}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
+      case "login":
+        return (
+          <ChatInput
+            type="date"
+            onClick={handleLogin}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
+      // Replace with custom for onboarding
+      case "loggedIn":
+        return (
+          <ChatInput
+            type="loggedIn"
+            onReview={handleLoggedIn}
+            isDisabled={inputDisabled}
+            setInputDisabled={setInputDisabled}
+          />
+        );
       case "text":
         return (
           <ChatInput
