@@ -269,8 +269,6 @@ function Onboarding() {
       password: `${year}-${month}-${day}`,
     });
 
-    console.log(loginResult);
-
     let nextQuestion;
 
     if (loginResult.status === 200) {
