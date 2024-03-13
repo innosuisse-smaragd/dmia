@@ -22,8 +22,8 @@ import java.util.Optional;
 @Slf4j
 public class QuestionnaireRestClient implements QuestionnaireClient {
 
-    private RestTemplate restTemplate;
-    private DmiaProperties dmiaProperties;
+    private final RestTemplate restTemplate;
+    private final DmiaProperties dmiaProperties;
 
     @Autowired
     public QuestionnaireRestClient(RestTemplateBuilder builder, DmiaProperties dmiaProperties) {
