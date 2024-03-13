@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Telecom {
-    private String system;
-    private String value;
+public class EnableWhen {
+    private String question;
+    private String operator;
+    private AnswerCoding answerCoding;
 }

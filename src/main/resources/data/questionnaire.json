@@ -1,134 +1,1093 @@
 {
-  "resourceType" : "Questionnaire",
-  "id" : "GENERATED_BY_SERVER",
-  "meta" : {
-    "profile" : [
-      "http://somewhere.org/fhir/uv/myig/StructureDefinition/SmaragdQuestionnaire"
+  "resourceType": "Questionnaire",
+  "id": "5",
+  "meta": {
+    "versionId": "2",
+    "lastUpdated": "2024-02-20T09:32:07.274+00:00",
+    "source": "#92kO8lYu1zmTPwn2",
+    "profile": [
+      "https://smaragd-6dd61.web.app/StructureDefinition-SmaragdQuestionnaire.html"
     ]
   },
-  "text" : {
-    "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><b>Structure</b><table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" style=\"border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;\"><tr style=\"border: 2px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top\"><th style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"The linkId for the item\">LinkId</a></th><th style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"Text for the item\">Text</a></th><th style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"Minimum and Maximum # of times the the itemcan appear in the instance\">Cardinality</a></th><th style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"The type of the item\">Type</a></th><th style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"Additional information about the item\">Description &amp; Constraints</a><span style=\"float: right\"><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"Legend for this format\"><img src=\"http://hl7.org/fhir/R4/help16.png\" alt=\"doco\" style=\"background-color: inherit\"/></a></span></th></tr><tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon_q_root.gif\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"QuestionnaireRoot\" class=\"hierarchy\"/> </td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"></td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Questionnaire</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">GENERATED_BY_SERVER#1.0.0</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck10.png)\" id=\"item.0\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"Coding\" class=\"hierarchy\"/> 0</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Why did you come?</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Options: <a href=\"#opt-item.0\">2 options</a></td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck01.png)\" id=\"item.1\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Group\" class=\"hierarchy\"/> 1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Your health information</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#54126-8</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck001.png)\" id=\"item.1.1\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-group.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"Group\" class=\"hierarchy\"/> 1.1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">null</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-group\">group</a></td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item.1.1.1\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-string.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"String\" class=\"hierarchy\"/> 1.1.1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Name</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-string\">string</a></td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#54125-0</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0011.png)\" id=\"item.1.1.2\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-coding.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"Coding\" class=\"hierarchy\"/> 1.1.2</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Gender</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-choice\">choice</a></td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#54131-8<br/>Value Set: http://hl7.org/fhir/us/sdc/ValueSet/LL1-9</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck00100.png)\" id=\"item.1.1.2.1.1\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vline.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-string.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"String\" class=\"hierarchy\"/> 1.1.2.1.1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Please specify</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-string\">string</a></td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"/></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item.1.1.3\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-date.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"Date\" class=\"hierarchy\"/> 1.1.3</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Date of Birth</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-date\">date</a></td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#21112-8</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white\"><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0010.png)\" id=\"item.1.1.4\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-decimal.png\" alt=\".\" style=\"background-color: white; background-color: inherit\" title=\"Decimal\" class=\"hierarchy\"/> 1.1.4</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Height in cm</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">1..1</td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-decimal\">decimal</a></td><td style=\"vertical-align: top; text-align : left; background-color: white; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#8302-2</td></tr>\r\n<tr style=\"border: 1px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: #F7F7F7\"><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck0000.png)\" id=\"item.1.1.5\" class=\"hierarchy\"><img src=\"tbl_spacer.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_blank.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"tbl_vjoin_end.png\" alt=\".\" style=\"background-color: inherit\" class=\"hierarchy\"/><img src=\"icon-q-decimal.png\" alt=\".\" style=\"background-color: #F7F7F7; background-color: inherit\" title=\"Decimal\" class=\"hierarchy\"/> 1.1.5</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Weight in kg</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">0..1</td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\"><a href=\"http://hl7.org/fhir/R4/codesystem-item-type.html#item-type-decimal\">decimal</a></td><td style=\"vertical-align: top; text-align : left; background-color: #F7F7F7; border: 1px #F0F0F0 solid; padding:0px 4px 0px 4px\" class=\"hierarchy\">Definition: http://loinc.org/rdf#29463-7</td></tr>\r\n<tr><td colspan=\"5\" class=\"hierarchy\"><br/><a href=\"http://hl7.org/fhir/R4/formats.html#table\" title=\"Legend for this format\"><img src=\"http://hl7.org/fhir/R4/help16.png\" alt=\"doco\" style=\"background-color: inherit\"/> Documentation for this format</a></td></tr></table><hr/><p><b>Option Sets</b></p><a name=\"opt-item.0\"> </a><p><b>Answer options for 0</b></p><ul><li style=\"font-size: 11px\">For a scheduled (routine) visit</li><li style=\"font-size: 11px\">For specific complaints about you</li></ul></div>"
-  },
-  "url" : "GENERATED_BY_SERVER",
-  "version" : "1.0.0",
-  "title" : "Example of SmaragdQuestionnaire",
-  "status" : "active",
-  "date" : "2023-03-08",
-  "publisher" : "Bern University of Applied Sciences - Institute for Medical Informatics I4MI",
-  "contact" : [
+  "url": "GENERATED_BY_SERVER",
+  "version": "1.6.0",
+  "title": "Smaragd Questionnaire",
+  "status": "active",
+  "date": "2023-03-08",
+  "publisher": "Bern University of Applied Sciences - Institute for Patient-Centered Digital Health",
+  "item": [
     {
-      "telecom" : [
+      "linkId": "3617033234783",
+      "text": "Mammografie-Fragen",
+      "type": "group",
+      "required": false,
+      "item": [
         {
-          "system" : "url",
-          "value" : "https://www.bfh.ch/en/research/research-areas/institute-medical-informatics-i4mi/"
-        }
-      ]
-    }
-  ],
-  "jurisdiction" : [
-    {
-      "coding" : [
-        {
-          "system" : "http://unstats.un.org/unsd/methods/m49/m49.htm",
-          "code" : "001"
-        }
-      ]
-    }
-  ],
-  "item" : [
-    {
-      "extension" : [
-        {
-          "url" : "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemMedia",
-          "valueAttachment" : {
-            "url" : "http://example.org/images/reason-for-visit.png"
-          }
-        }
-      ],
-      "linkId" : "0",
-      "text" : "Why did you come?",
-      "type" : "choice",
-      "answerOption" : [
-        {
-          "extension" : [
-            {
-              "url" : "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemAnswerMedia",
-              "valueAttachment" : {
-                "url" : "http://example.org/images/reason-for-visit-routine.png"
-              }
-            }
-          ],
-          "valueString" : "For a scheduled (routine) visit"
+          "linkId": "4077759207199",
+          "text": "Ich stelle zunächst allgemeine Fragen.",
+          "type": "display",
+          "required": false
         },
         {
-          "extension" : [
+          "linkId": "2367512506151",
+          "text": "Wie geht es Ihnen heute?",
+          "type": "text",
+          "required": false
+        },
+        {
+          "extension": [
             {
-              "url" : "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemAnswerMedia",
-              "valueAttachment" : {
-                "url" : "http://example.org/images/reason-for-visit-specific-complaint.png"
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
               }
             }
           ],
-          "valueString" : "For specific complaints about you"
+          "linkId": "8374981284874",
+          "text": "Geht es Ihnen heute seit Ihrem letzten Arztbesuch besser, schlechter oder gleichbleibend?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Besser"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Schlechter"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Gleichbleibend"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "5053705920031",
+          "text": "Wann hatten Sie zum letzen Mal Kontakt zu einem Arzt oder einer Ärztin?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Vor ein paar Tagen"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": " Vor ein paar Wochen"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Vor ein paar Monaten "
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ich kann mich nicht erinnern"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "check-box"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "908713925250",
+          "text": "Bei welchem Arzt oder welcher Ärztin waren Sie?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "5053705920031",
+              "operator": "!=",
+              "answerCoding": {
+                "display": "Ich kann mich nicht erinnern"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Hausarzt bzw. Hausärztin"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Gynäkologe bzw. Gynäkologin"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Anderer Arzt bzw. andere Ärztin"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Aufenthalt im Spital"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "500934750144",
+          "text": "Was ist ihr biologisches Geschlecht?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Männlich"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Weiblich"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Inter*"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "388679485580",
+          "text": "Sind Sie gegen etwas allergisch?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "check-box"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "362820373",
+          "text": "Wählen Sie alle zutreffenden Optionen aus.",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "388679485580",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Medikamente (z. B. Penicillin, Aspirin)"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Kontrastmittel"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Lebensmittel (z. B. Nüsse, Meeresfrüchte)"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Insektenstiche oder -bisse (z. B. Bienen, Wespen)"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Andere"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "378699481580",
+          "text": "Haben Sie seit dem letzten Arzttermin eine Veränderung Ihrer Brust bemerkt?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "4234474633161",
+          "text": "Konnten oder können Sie die Veränderung ertasten?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "378699481580",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "4317671598369",
+          "text": "Auf welcher Seite ist die Veränderung?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "378699481580",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Links"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Rechts"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8116990076089",
+          "text": "Bitte beschreiben Sie die Veränderung in eigenen Worten.",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "378699481580",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "442123730417",
+          "text": "Haben oder hatten Sie seit dem letzten Arzttermin Schmerzen in der Brust?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "6497800652660",
+          "text": "Auf welcher Seite hatten Sie Schmerzen?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "442123730417",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Links"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Rechts"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "8266890503471",
+          "text": "Bitte beschreiben Sie die Schmerzen in eigenen Worten.",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "442123730417",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "7807003089839",
+          "text": "Waren Sie seit dem letzten Arzttermin erkältet?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "1449312689059",
+          "text": "Hatten Sie seit dem letzten Arzttermin Fieber, Nachtschweiss oder haben Sie ungewollt Gewicht verloren?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "check-box"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2126250244274",
+          "text": "Welche Beschwerden hatten oder haben Sie?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "1449312689059",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Fieber "
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Nachtschweiss"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Gewichtsverlust"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "9806161832276",
+          "text": "Haben Sie seit dem letzten Arzttermin Ihren Arm oder Ihre Hand verletzt (z.B. Schnitt, Stich, Wunde, Verbrennung)?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "3617426907658",
+          "text": "Auf welcher Seite war die Verletzung?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "9806161832276",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Links"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Rechts"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "613647467466",
+          "text": "Bitte beschreiben Sie die Verletzung in eigenen Worten.",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "9806161832276",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "7028160593013",
+          "text": "Haben Sie seit dem letzten Arzttermin eine Spritze in Ihre Schulter erhalten (z.B. Kortisonspritze, Impfung, etc.)?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "8656983557428",
+          "text": "Auf welcher Seite liegt die Einstichstelle bzw. die Einstichstellen?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "7028160593013",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Links"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Rechts"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "9414557319165",
+          "text": "Welche Spritze?",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "7028160593013",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2829555085654",
+          "text": "Wann war Ihre letzte Regelblutung?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "500934750144",
+              "operator": "!=",
+              "answerCoding": {
+                "display": "Männlich"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Vor ein paar Tagen"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Vor ein paar Wochen"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Vor ein paar Monaten"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ich kann mich nicht erinnern"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "6251452553023",
+          "text": "Erhalten Sie derzeit eine Hormonersatztherapie oder Anti-Babypille?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Ja, Hormonersatztherapie"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja, Anti-Babybille"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "3982483526493",
+          "text": "Sind Sie schwanger oder stillen Sie?",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "500934750144",
+              "operator": "!=",
+              "answerCoding": {
+                "display": "Männlich"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Ich bin schwanger"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ich stille"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ich bin schwanger und stille "
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ich bin weder schwanger noch stille ich"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "383923832002",
+          "text": "Wie viele Schwangerschaften hatten Sie insgesamt? Bitte geben Sie die Anzahl ein.",
+          "type": "integer",
+          "enableWhen": [
+            {
+              "question": "3982483526493",
+              "operator": "!=",
+              "answerCoding": {
+                "display": "Ich bin weder schwanger noch stille ich"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "7128150573083",
+          "text": "Wurde seit dem letzten Arzttermin eine Chemotherapie, Strahlentherapie, Operation oder Biopsie der Brust durchgeführt? ",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "check-box"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2102152287538",
+          "text": "Bitte wählen Sie alle zutreffenden Optionen.",
+          "type": "choice",
+          "enableWhen": [
+            {
+              "question": "7128150573083",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Chemotherapie"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Strahlentherapie"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Operation der Brust "
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Biopsie der Brust"
+              }
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/ValueSet/questionnaire-item-control",
+                    "code": "radio-button"
+                  }
+                ]
+              }
+            }
+          ],
+          "linkId": "2543937376179",
+          "text": "Gibt es noch etwas Wichtiges, was ich dem behandelnden Arzt oder der behandelnden Ärztin mitteilen soll?",
+          "type": "choice",
+          "required": false,
+          "repeats": false,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "display": "Nein"
+              }
+            },
+            {
+              "valueCoding": {
+                "display": "Ja"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "4990110314118",
+          "text": "Was wollen Sie Ihrem behandelnden Arzt bzw. Ihrer behandelnden Ärztin noch mitteilen?",
+          "type": "text",
+          "enableWhen": [
+            {
+              "question": "2543937376179",
+              "operator": "=",
+              "answerCoding": {
+                "display": "Ja"
+              }
+            }
+          ],
+          "required": false,
+          "repeats": false
         }
       ]
     },
     {
-      "linkId" : "1",
-      "definition" : "http://loinc.org/rdf#54126-8",
-      "text" : "Your health information",
-      "type" : "group",
-      "required" : true,
-      "item" : [
-        {
-          "linkId" : "1.1",
-          "type" : "group",
-          "item" : [
-            {
-              "linkId" : "1.1.1",
-              "definition" : "http://loinc.org/rdf#54125-0",
-              "text" : "Name",
-              "type" : "string"
-            },
-            {
-              "linkId" : "1.1.2",
-              "definition" : "http://loinc.org/rdf#54131-8",
-              "text" : "Gender",
-              "type" : "choice",
-              "required" : true,
-              "answerValueSet" : "http://hl7.org/fhir/us/sdc/ValueSet/LL1-9",
-              "item" : [
-                {
-                  "linkId" : "1.1.2.1.1",
-                  "text" : "Please specify",
-                  "type" : "string",
-                  "required" : true
-                }
-              ]
-            },
-            {
-              "linkId" : "1.1.3",
-              "definition" : "http://loinc.org/rdf#21112-8",
-              "text" : "Date of Birth",
-              "type" : "date"
-            },
-            {
-              "linkId" : "1.1.4",
-              "definition" : "http://loinc.org/rdf#8302-2",
-              "text" : "Height in cm",
-              "type" : "decimal",
-              "required" : true
-            },
-            {
-              "linkId" : "1.1.5",
-              "definition" : "http://loinc.org/rdf#29463-7",
-              "text" : "Weight in kg",
-              "type" : "decimal"
-            }
-          ]
-        }
-      ]
+      "linkId": "6038791184237",
+      "text": "Vielen Dank, dass Sie sich die Zeit und Mühe gemacht haben die Gesundheitsfragen zu beantworten! Ich wünsche Ihnen einen angenehmen Tag.",
+      "type": "display"
     }
   ]
 }

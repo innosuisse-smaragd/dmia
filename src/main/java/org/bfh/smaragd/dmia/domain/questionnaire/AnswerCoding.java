@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Extension {
-    private String url;
-    private ValueCodeableConcept valueCodeableConcept;
+public class AnswerCoding {
+    private String display;
 }
