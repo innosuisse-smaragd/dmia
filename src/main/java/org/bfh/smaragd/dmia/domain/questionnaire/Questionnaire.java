@@ -9,13 +9,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Questionnaire {
     private String resourceType;
-    private String id;
-    private Meta meta;
-    private String url;
-    private String version;
     private String title;
+    private String version;
     private String status;
-    private String date;
     private String publisher;
+    private Meta meta;
+    private String date;
+    private String url;
     private List<Item> item;
 }

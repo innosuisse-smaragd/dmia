@@ -1,6 +1,7 @@
 package org.bfh.smaragd.dmia.repository;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.bfh.smaragd.dmia.domain.task.Task;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,7 @@ public class TaskRepository {
             return tasks
                     .entrySet()
                     .stream()
-                    .filter(key -> username.equals(key.getKey().username()) && id.equals(key.getKey().taskId()))
+                    .filter(key -> username.equals(key.getKey().getUsername()) && id.equals(key.getKey().getTaskId()))
                     .map(Map.Entry::getValue)
                     .findAny();
         }
@@ -36,7 +37,7 @@ public class TaskRepository {
             return tasks
                     .entrySet()
                     .stream()
-                    .filter(key -> username.equals(key.getKey().username()))
+                    .filter(key -> username.equals(key.getKey().getUsername()))
                     .map(Map.Entry::getValue)
                     .toList();
         }
@@ -44,7 +45,10 @@ public class TaskRepository {
     }
 
 
-    private record TaskKey(String username, String taskId) {
+    @Data
+    static class TaskKey {
+        private final String username;
+        private final String taskId;
     }
 
 }

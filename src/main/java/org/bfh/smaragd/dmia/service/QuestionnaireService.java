@@ -86,7 +86,7 @@ public class QuestionnaireService {
     }
 
     private void addQuestionnaire(String username, String taskId, Questionnaire questionnaire) {
-        log.info("Add questionnaire (id={})", questionnaire.getId());
+        log.info("Add questionnaire (taskId={})", taskId);
         questionnaireRepository.save(username, taskId, questionnaire);
     }
 

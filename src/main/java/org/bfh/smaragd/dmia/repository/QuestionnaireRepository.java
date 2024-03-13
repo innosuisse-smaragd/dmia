@@ -1,6 +1,7 @@
 package org.bfh.smaragd.dmia.repository;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.bfh.smaragd.dmia.domain.questionnaire.Questionnaire;
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +17,7 @@ public class QuestionnaireRepository {
     private final Map<QuestionnaireKey, Questionnaire> questionnaires = new HashMap<>();
 
     public void save(String username, String taskId, Questionnaire questionnaire) {
-        var id = questionnaire.getId();
-        var key = new QuestionnaireKey(username, taskId, id);
+        var key = new QuestionnaireKey(username, taskId);
         questionnaires.put(key, questionnaire);
     }
 
@@ -26,13 +26,16 @@ public class QuestionnaireRepository {
             return questionnaires
                     .entrySet()
                     .stream()
-                    .filter(key -> username.equals(key.getKey().username()) && taskId.equals(key.getKey().taskId()))
+                    .filter(key -> username.equals(key.getKey().getUsername()) && taskId.equals(key.getKey().getTaskId()))
                     .map(Map.Entry::getValue)
                     .toList();
         }
         return Collections.emptyList();
     }
 
-    private record QuestionnaireKey(String username, String taskId, String questionnaireId) {
+    @Data
+    private class QuestionnaireKey {
+        private final String username;
+        private final String taskId;
     }
 }
