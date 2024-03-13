@@ -26,4 +26,7 @@ public class UserService {
         return new User(user.getUsername(), user.getPassword());
     }
 
+    public void removeByUsername(String username) {
+        userRepository.remove(username);
+    }
 }

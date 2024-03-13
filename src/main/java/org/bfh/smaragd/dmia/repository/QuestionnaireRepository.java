@@ -33,6 +33,11 @@ public class QuestionnaireRepository {
         return Collections.emptyList();
     }
 
+    public void removeByUsernameAndTaskId(String username, String taskId) {
+        var key = new QuestionnaireKey(username, taskId);
+        questionnaires.remove(key);
+    }
+
     @Data
     private class QuestionnaireKey {
         private final String username;

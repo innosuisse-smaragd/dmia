@@ -102,12 +102,12 @@ public class QuestionnaireService {
     public void createResponse(String username, String taskId, Response response) {
         log.info("Create response for username ({}) and task id ({})", username, taskId);
         taskRepository.findByUsernameAndId(username, taskId)
-                .ifPresent(task -> task.getInput().forEach(input -> sendResponseIfResponseEndpoint(task, input, response)));
+                .ifPresent(task -> task.getInput().forEach(input -> sendResponseIfResponseEndpoint(username, task, input, response)));
     }
 
-    private void sendResponseIfResponseEndpoint(Task task, Input input, Response response) {
+    private void sendResponseIfResponseEndpoint(String username, Task task, Input input, Response response) {
         if (isResponseEndpoint(input)) {
-            sendResponse(task, input, response);
+            sendResponse(username, task, input, response);
         }
     }
 
@@ -115,13 +115,13 @@ public class QuestionnaireService {
         return input.getType().getCoding().stream().map(Coding::getCode).anyMatch(CODE_RESPONSE_ENDPOINT::equals);
     }
 
-    private void sendResponse(Task task, Input input, Response response) {
+    private void sendResponse(String username, Task task, Input input, Response response) {
         String url = input.getValueUrl();
         log.info("Response url found (url={})", url);
         String responseUrl = questionnaireClient.createResponse(url, response);
         updateQuestionnaireResponse(task, responseUrl);
         questionnaireClient.updateTask(task);
-        // TODO remove task from the repository ?
+        cleanUpTask(username, task);
     }
 
     private void updateQuestionnaireResponse(Task task, String responseUrl) {
@@ -137,4 +137,15 @@ public class QuestionnaireService {
     private boolean isQuestionnaireResponse(Output output) {
         return output.getType().getCoding().stream().map(Coding::getCode).anyMatch(CODE_QUESTIONNAIRE_RESPONSE::equals);
     }
+
+
+    private void cleanUpTask(String username, Task task) {
+        questionnaireRepository.removeByUsernameAndTaskId(username, task.getId());
+        taskRepository.removeByUsernameAndTaskId(username, task.getId());
+        var tasks = taskRepository.findByUsername(username);
+        if(tasks.isEmpty()){
+            userService.removeByUsername(username);
+        }
+    }
+
 }

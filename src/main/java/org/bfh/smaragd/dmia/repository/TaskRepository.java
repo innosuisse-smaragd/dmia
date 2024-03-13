@@ -44,6 +44,11 @@ public class TaskRepository {
         return Collections.emptyList();
     }
 
+    public void removeByUsernameAndTaskId(String username, String taskId) {
+        var key = new TaskKey(username, taskId);
+        tasks.remove(key);
+    }
+
 
     @Data
     static class TaskKey {
