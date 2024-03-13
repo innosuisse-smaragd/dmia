@@ -372,7 +372,6 @@ function Chat() {
 
   return (
     <Stack sx={{ width: "100%", maxWidth: 1200, px: 4 }}>
-      {/* ----- Chat Header ----- */}
       <ChatHeader />
 
       {/* ----- Chat Content ----- */}

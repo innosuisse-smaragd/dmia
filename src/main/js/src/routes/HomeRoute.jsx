@@ -6,6 +6,7 @@ import NavBar from "../components/Page/NavBar";
 import { useState } from "react";
 import { login } from "../api/authentication";
 import { fetchTasks } from "../api/tasks";
+import Onboarding from "../components/Onboarding/Onboarding";
 
 function HomeRoute() {
   const navigate = useNavigate();
@@ -43,11 +44,13 @@ function HomeRoute() {
         }),
       }}
     >
-      <Box width="100%" height="100%" padding="5rem">
+      <Box width="100%" height="100%">
         <Box height="10%">
           <NavBar />
         </Box>
-        <Box display="flex" justifyContent="center" height="90%"></Box>
+        <Box display="flex" justifyContent="center" height="90%">
+          <Onboarding />
+        </Box>
       </Box>
     </Box>
   );
