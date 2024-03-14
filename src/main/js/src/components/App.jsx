@@ -10,7 +10,6 @@ import ChatRoute from "../routes/ChatRoute";
 import HomeRoute from "../routes/HomeRoute";
 import ReviewRoute from "../routes/ReviewRoute";
 import EndRoute from "../routes/EndRoute";
-import TasksRoute from "../routes/TasksRoute";
 
 function App() {
   // const [showChat, setShowChat] = useState(false);
@@ -23,11 +22,6 @@ function App() {
     {
       path: "/",
       element: <HomeRoute />,
-      errorElement: <HomeRoute />,
-    },
-    {
-      path: "/tasks",
-      element: <TasksRoute />,
       errorElement: <HomeRoute />,
     },
     {

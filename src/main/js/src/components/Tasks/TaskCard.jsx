@@ -43,6 +43,14 @@ function TaskCard({ task }) {
     });
   };
 
+  const formatDate = (date) => {
+    let formattedDate = `${date.split("-").reverse()[0]}.${
+      date.split("-").reverse()[1]
+    }.${date.split("-").reverse()[2]}`;
+
+    return formattedDate;
+  };
+
   return (
     <>
       <Card
@@ -69,7 +77,7 @@ function TaskCard({ task }) {
           </Typography>
           <Typography>
             <b>Geburtsdatum: </b>
-            {task.contained[0].birthDate}
+            {formatDate(task.contained[0].birthDate)}
           </Typography>
           <Typography>
             <b>Geschlecht: </b>

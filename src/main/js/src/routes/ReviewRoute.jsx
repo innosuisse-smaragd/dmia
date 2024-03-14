@@ -13,14 +13,13 @@ import { useSelector } from "react-redux";
 import { selectSelectedFontSize } from "../slices/themeSlice";
 import { postQuestionnaireResponse } from "../api/tasks";
 import questionnaireResponse from "../json/questionnaireResponse";
-import { selectAuthToken } from "../slices/tokenSlice";
+import { login } from "../api/authentication";
 
 function ReviewRoute() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { displayedMessages, serverQuestionnaire, task } = state;
   let containedPatient;
-  let authToken = useSelector(selectAuthToken);
 
   // Get contained patient from task
   task.contained.forEach((contained) => {
@@ -67,6 +66,7 @@ function ReviewRoute() {
 
     return isChatQuestion;
   });
+
   const userReplies = displayedMessages.filter((message) => {
     let isChatQuestion = true;
     if (!message.user) {
@@ -75,10 +75,20 @@ function ReviewRoute() {
 
     return isChatQuestion;
   });
+
   const fontSize = useSelector(selectSelectedFontSize);
 
-  const handleEndQuestionnaire = () => {
-    postQuestionnaireResponse(questionnaireResponse, task.id, authToken);
+  const handleEndQuestionnaire = async () => {
+    const username = `${task.contained[0].name[0].given} ${task.contained[0].name[0].family}`;
+    const authToken = await login({
+      username,
+      password: task.contained[0].birthDate,
+    });
+    postQuestionnaireResponse(
+      questionnaireResponse,
+      task.id,
+      authToken.data.accessToken
+    );
     navigate("/end");
   };
 
@@ -106,7 +116,7 @@ function ReviewRoute() {
             }}
           >
             <h1>Bitte überprüfen Sie Ihre Antwort</h1>
-            <p>
+            <p style={{ textAlign: "center" }}>
               Bitte überprüfen Sie die Antworten, die Sie während des Chats
               gegeben haben. Sobald Sie sie überprüft haben, klicken Sie auf die
               Schaltfläche „Antworten senden“.
