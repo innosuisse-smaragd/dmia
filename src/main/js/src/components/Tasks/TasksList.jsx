@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { fetchTasks } from "../../api/tasks";
 import TaskCard from "./TaskCard";
-import { useSelector } from "react-redux";
-import { selectAuthToken } from "../../slices/tokenSlice";
 import { Container } from "@mui/material";
 
 function TasksList() {
   const [tasks, setTasks] = useState([]);
-  let authToken = useSelector(selectAuthToken);
 
   useEffect(() => {
-    const fetchTasksData = async () => {
-      const response = await fetchTasks();
+    let interval = setInterval(() => {
+      const fetchTasksData = async () => {
+        const response = await fetchTasks();
+        setTasks(response);
+      };
 
-      setTasks(response);
+      fetchTasksData();
+    }, 30000);
+
+    return () => {
+      clearInterval(interval);
     };
-
-    fetchTasksData();
   }, []);
 
   return (
