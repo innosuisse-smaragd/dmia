@@ -116,7 +116,7 @@ function ReviewRoute() {
             }}
           >
             <h1>Bitte überprüfen Sie Ihre Antwort</h1>
-            <p>
+            <p style={{ textAlign: "center" }}>
               Bitte überprüfen Sie die Antworten, die Sie während des Chats
               gegeben haben. Sobald Sie sie überprüft haben, klicken Sie auf die
               Schaltfläche „Antworten senden“.
