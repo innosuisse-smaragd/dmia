@@ -79,7 +79,7 @@ Here are the commands you need to run in order to build the project.
 
 From the project root, navigate to the frontend app
 ```
-cd apps/frontend
+cd src/main/js
 ```
 
 Once you navigated to the root of the frontend app, execute this command:
