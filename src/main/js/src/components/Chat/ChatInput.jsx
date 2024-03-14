@@ -121,7 +121,7 @@ function ChatInput({
           disabled={isDisabled}
         />
       )}
-      {(type === "disabled" || type === "loggedIn") && (
+      {type === "disabled" && (
         <TextField sx={{ width: "100%", mr: 1 }} disabled />
       )}
       {type === "final" && (
@@ -192,9 +192,7 @@ function ChatInput({
           </Select>
         </FormControl>
       )}
-      {type === "disabled" ||
-      type === "loggedIn" ||
-      (value === "" && multi.length === 0) ? (
+      {type === "disabled" || (value === "" && multi.length === 0) ? (
         <Button variant="outlined" onClick={handleClick} disabled>
           <SendIcon />
         </Button>
@@ -211,18 +209,6 @@ function ChatInput({
           disabled={isDisabled}
         >
           Überprüfen
-        </Button>
-      ) : (
-        ""
-      )}
-      {type === "loggedIn" ? (
-        <Button
-          variant="outlined"
-          sx={{ ml: ".5rem", px: "1.5rem" }}
-          onClick={handleReview}
-          disabled={isDisabled}
-        >
-          Aufgaben ansehen
         </Button>
       ) : (
         ""

@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectSelectedFontSize } from "../slices/themeSlice";
 import NavBar from "../components/Page/NavBar";
-import Onboarding from "../components/Onboarding/Onboarding";
 import TasksList from "../components/Tasks/TasksList";
 
 function HomeRoute() {

@@ -7,7 +7,7 @@ import { selectSelectedFontSize } from "../slices/themeSlice";
 function EndRoute() {
   const navigate = useNavigate();
   const onBackToTaskList = () => {
-    navigate("/tasks");
+    navigate("/");
   };
   const fontSize = useSelector(selectSelectedFontSize);
 

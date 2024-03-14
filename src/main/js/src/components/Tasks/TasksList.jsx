@@ -21,24 +21,24 @@ function TasksList() {
 
   return (
     <>
-      {tasks.length !== 0 ? (
-        <Container
-          sx={{
-            mb: 3,
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {tasks.map((task, index) => {
+      <Container
+        sx={{
+          mb: 3,
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {tasks.length !== 0 ? (
+          tasks.map((task, index) => {
             return <TaskCard key={index} task={task} />;
-          })}
-        </Container>
-      ) : (
-        <h3 style={{ marginTop: "35%" }}>
-          Zurzeit sind Ihnen keine Aufgaben zugewiesen
-        </h3>
-      )}
+          })
+        ) : (
+          <h2 style={{ marginTop: "5rem" }}>
+            Zurzeit sind Ihnen keine Aufgaben zugewiesen
+          </h2>
+        )}
+      </Container>
     </>
   );
 }

@@ -12,8 +12,6 @@ export const fetchTasks = async () => {
 };
 
 export const fetchTaskQuestionnaire = async (taskId, token) => {
-  console.log(token);
-
   const config = {
     method: "get",
     url: `http://localhost:8081/api/v1/tasks/${taskId}/questionnaires`,
@@ -44,5 +42,5 @@ export const postQuestionnaireResponse = async (
 
   const response = axios.request(config);
 
-  console.log(response);
+  return response;
 };

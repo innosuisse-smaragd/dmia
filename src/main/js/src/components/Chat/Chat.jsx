@@ -13,33 +13,39 @@ import { checkName, login } from "../../api/authentication";
 const rightNameMessage = {
   type: "login",
   text: "Ich habe Sie gefunden. Bitte nennen Sie mir nun Ihr Geburtsdatum (TT.MM.JJJJ).",
+  linkId: "3",
 };
 
 const wrongNameMessage = {
   type: "checkName",
   text: "Der von Ihnen eingegebene Name war falsch. Bitte versuche Sie es erneut.",
+  linkId: "4",
 };
 
 const endNameMessage = {
   type: "end",
   text: "Ich konnte Sie nicht finden. Bitte überprüfen Sie, ob Sie Ihren Namen richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+  linkId: "5",
 };
 
 const rightLoginMessage = (userName) => {
   return {
     type: "display",
     text: `Guten Tag, ${userName}! Ich konnte Sie erfolgreich erfassen.`,
+    linkId: "6",
   };
 };
 
 const wrongLoginMessage = {
   type: "login",
   text: "Das von Ihnen eingegebene Datum war falsch. Bitte versuche Sie es erneut.",
+  linkId: "7",
 };
 
 const endLoginMessage = {
   type: "end",
   text: "Ich konnte Sie nicht anhand Ihres Geburtsdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
+  linkId: "8",
 };
 
 // Container component for the chat section of the app
@@ -125,7 +131,6 @@ function Chat() {
   };
 
   const handleNewMessage = (message) => {
-    console.log(questionnaire);
     let indexIncrement = 1;
     const currentLinkId = questionnaire[currentMessageIndex].linkId;
 
@@ -260,7 +265,8 @@ function Chat() {
   };
 
   const handleCheckName = async (message) => {
-    const currentLinkId = questionnaire[currentMessageIndex].linkId;
+    const currentLinkId =
+      displayedMessages[displayedMessages.length - 1].linkId;
     const rightName = await checkName(message.trim());
     let nextQuestion;
 
@@ -305,7 +311,8 @@ function Chat() {
     const month = message.split(".")[1];
     const day = message.split(".")[0];
 
-    const currentLinkId = questionnaire[currentMessageIndex].linkId;
+    const currentLinkId =
+      displayedMessages[displayedMessages.length - 1].linkId;
     const loginResult = await login({
       username: userName,
       password: `${year}-${month}-${day}`,
@@ -438,16 +445,6 @@ function Chat() {
           <ChatInput
             type="date"
             onClick={handleLogin}
-            isDisabled={inputDisabled}
-            setInputDisabled={setInputDisabled}
-          />
-        );
-      // Replace with custom for onboarding
-      case "loggedIn":
-        return (
-          <ChatInput
-            type="loggedIn"
-            onReview={handleLoggedIn}
             isDisabled={inputDisabled}
             setInputDisabled={setInputDisabled}
           />
