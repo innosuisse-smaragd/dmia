@@ -91,9 +91,3 @@ After the command executed, the app is built. In order to verify that the app ex
 docker images
 ```
 If the build process succeeded, an image with the name dmia-frontend appears in the list of repositories.
-
-## Posting tasks
-
-Tasks can be posted to the application by using the endpoint /api/v1/tasks
-
-In order to be accepted by the server, the posted task need to have the same data structure as defined here: https://smaragd-6dd61.web.app/Task-GENERATED_BY_SERVER.json.html
