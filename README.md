@@ -71,3 +71,29 @@ From you file explorer, navigate to the target folder and copy the 'dmia-X-X-X-S
 Paste it at the root of the tomcat/webapps folder.
 
 The app is deployed on tomcat and can be accessed by navigating to your_tomcat_host/dmia. For example if the tomcat server runs on localhost:8080, the app is accessible at localhost:8080/dmia
+
+## Docker
+Docker can be used to containerize the frontend application so you will need to install it before being able to build it. A guide on how to so can be found at https://www.docker.com/get-started/
+
+Here are the commands you need to run in order to build the project.
+
+From the project root, navigate to the frontend app
+```
+cd src/main/js
+```
+
+Once you navigated to the root of the frontend app, execute this command:
+```
+docker build -t dmia-frontend .
+```
+After the command executed, the app is built. In order to verify that the app exists, you can run the following command:
+```
+docker images
+```
+If the build process succeeded, an image with the name dmia-frontend appears in the list of repositories.
+
+## Posting tasks
+
+Tasks can be posted to the application by using the endpoint /api/v1/tasks
+
+In order to be accepted by the server, the posted task need to have the same data structure as defined here: https://smaragd-6dd61.web.app/Task-GENERATED_BY_SERVER.json.html
