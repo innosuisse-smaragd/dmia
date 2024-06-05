@@ -1,52 +1,26 @@
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { Stack, Typography } from "@mui/material";
-import { saveAs } from "file-saver";
+
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
-import { useEffect, useState } from "react";
-import "./chat.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import { fetchQaAnswer } from "../../api/qa";
-import onboarding from "../../json/onboarding_2";
 import ChatHeader from "./ChatHeader";
+import { fetchQaAnswer } from "../../api/qa";
 import { checkName, login } from "../../api/authentication";
+import onboarding from "../../json/onboarding_2";
+import {
+  MESSAGE_DELAY,
+  END_LOGIN_MESSAGE,
+  END_NAME_MESSAGE,
+  RIGHT_LOGIN_MESSAGE,
+  RIGHT_NAME_MESSAGE,
+  WRONG_LOGIN_MESSAGE,
+  WRONG_NAME_MESSAGE,
+} from "./constants";
 
-const rightNameMessage = {
-  type: "login",
-  text: "Ich habe Sie gefunden. Bitte nennen Sie mir nun Ihr Geburtsdatum (TT.MM.JJJJ).",
-  linkId: "3",
-};
-
-const wrongNameMessage = {
-  type: "checkName",
-  text: "Der von Ihnen eingegebene Name war falsch. Bitte versuche Sie es erneut.",
-  linkId: "4",
-};
-
-const endNameMessage = {
-  type: "end",
-  text: "Ich konnte Sie nicht finden. Bitte überprüfen Sie, ob Sie Ihren Namen richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
-  linkId: "5",
-};
-
-const rightLoginMessage = (userName) => {
-  return {
-    type: "display",
-    text: `Guten Tag, ${userName}! Ich konnte Sie erfolgreich erfassen.`,
-    linkId: "6",
-  };
-};
-
-const wrongLoginMessage = {
-  type: "login",
-  text: "Das von Ihnen eingegebene Datum war falsch. Bitte versuche Sie es erneut.",
-  linkId: "7",
-};
-
-const endLoginMessage = {
-  type: "end",
-  text: "Ich konnte Sie nicht anhand Ihres Geburtsdatums erfassen. Bitte überprüfen Sie, ob Sie das Datum richtig eingegeben haben. Falls ja, wenden Sie Sich bitte an einen Mitarbeiter oder eine Mitarbeiterin.",
-  linkId: "8",
-};
+import { checkEnableQuestion } from "./helpers";
+import "./chat.css";
 
 // Container component for the chat section of the app
 function Chat() {
@@ -82,53 +56,9 @@ function Chat() {
 
   const [inputDisabled, setInputDisabled] = useState(true);
 
-  let messageDelay = 2000;
+  let messageDelay = MESSAGE_DELAY;
 
   const navigate = useNavigate();
-
-  const compareAnswer = (question, answer) => {
-    let enabled = false;
-
-    // How the condition and answer should be compared
-    switch (question.enableWhen[0].operator) {
-      // They should not be equal
-      case "!=":
-        // If not equal
-        if (answer !== question.enableWhen[0].answerCoding.display) {
-          // The question should be asked
-          enabled = true;
-        }
-        break;
-      // They should be equal
-      case "=":
-        // If equal
-        if (answer === question.enableWhen[0].answerCoding.display) {
-          // The question should be asked
-          enabled = true;
-        }
-    }
-
-    return enabled;
-  };
-
-  // Check if an optional question should be asked
-  const checkEnableQuestion = (question, answer) => {
-    let enabled = false;
-
-    if (Array.isArray(answer)) {
-      answer.forEach((a) => {
-        if (compareAnswer(question, a)) {
-          enabled = compareAnswer(question, a);
-        }
-      });
-    } else if (answer === undefined) {
-      enabled = false;
-    } else {
-      enabled = compareAnswer(question, answer);
-    }
-
-    return enabled;
-  };
 
   const handleNewMessage = (message) => {
     let indexIncrement = 1;
@@ -176,36 +106,6 @@ function Chat() {
       }
     }
 
-    const currentTime = new Date();
-    const timediff = (currentTime - startTime) / 1000;
-
-    if (message !== true) {
-      setLogs({
-        logs: [
-          ...logs.logs,
-          {
-            time:
-              timediff > 60
-                ? `${Math.round(((timediff % 86400000) % 3600000) / 60)}:${
-                    Math.round(timediff % 60) < 10
-                      ? `0${Math.round(timediff % 60)}`
-                      : Math.round(timediff % 60)
-                  }`
-                : `${
-                    Math.round(timediff) < 10
-                      ? `0${Math.round(timediff)}`
-                      : Math.round(timediff)
-                  }`,
-            question: questionnaire[currentMessageIndex].text,
-            answer:
-              currentMessageIndex === 7 || currentMessageIndex === 8
-                ? "***"
-                : message,
-          },
-        ],
-      });
-    }
-
     let modifiedDisplayMessages = displayedMessages;
 
     if (message !== true) {
@@ -215,6 +115,7 @@ function Chat() {
       }));
     }
 
+    // If previous message type was display
     if (message === true) {
       setDisplayedMessages([
         ...modifiedDisplayMessages,
@@ -223,6 +124,7 @@ function Chat() {
           typing: true,
         },
       ]);
+      // If next question is final message
     } else if (nextQuestion.type === "final") {
       setDisplayedMessages([
         ...modifiedDisplayMessages,
@@ -232,6 +134,7 @@ function Chat() {
           text: message,
           questionLinkId: currentLinkId,
           typing: false,
+          isQuestionnaireResponse: true,
         },
         {
           ...nextQuestion,
@@ -253,6 +156,7 @@ function Chat() {
           text: message,
           questionLinkId: currentLinkId,
           typing: false,
+          isQuestionnaireResponse: true,
         },
         {
           ...nextQuestion,
@@ -271,14 +175,14 @@ function Chat() {
     let nextQuestion;
 
     if (rightName) {
-      nextQuestion = rightNameMessage;
+      nextQuestion = RIGHT_NAME_MESSAGE;
       setGaveWrongAnswer(false);
       setUserName(message.trim());
     } else if (!rightName && !gaveWrongAnswer) {
-      nextQuestion = wrongNameMessage;
+      nextQuestion = WRONG_NAME_MESSAGE;
       setGaveWrongAnswer(true);
     } else if (!rightName && gaveWrongAnswer) {
-      nextQuestion = endNameMessage;
+      nextQuestion = END_NAME_MESSAGE;
     }
 
     let modifiedDisplayMessages = displayedMessages;
@@ -321,14 +225,14 @@ function Chat() {
     let nextQuestion;
 
     if (loginResult.status === 200) {
-      nextQuestion = rightLoginMessage(userName);
+      nextQuestion = RIGHT_LOGIN_MESSAGE(userName);
       setQuestionnaire([...questionnaire, ...newQuestionnaire]);
       setGaveWrongAnswer(false);
     } else if (loginResult.status !== 200 && !gaveWrongAnswer) {
-      nextQuestion = wrongLoginMessage;
+      nextQuestion = WRONG_LOGIN_MESSAGE;
       setGaveWrongAnswer(true);
     } else if (loginResult.status !== 200 && gaveWrongAnswer) {
-      nextQuestion = endLoginMessage;
+      nextQuestion = END_LOGIN_MESSAGE;
     }
 
     let modifiedDisplayMessages = displayedMessages;
@@ -416,11 +320,6 @@ function Chat() {
   };
 
   const handleFinalMessage = (message) => {
-    var blob = new Blob([JSON.stringify(logs)], {
-      type: "text/plain;charset=utf-8",
-    });
-    saveAs(blob, "dmia_logs.json");
-
     if (message === true) {
       navigate("/uberprufen", {
         state: { displayedMessages, serverQuestionnaire, task },
@@ -535,6 +434,7 @@ function Chat() {
           pl: 1,
           pr: 2,
           flex: 1,
+          pb: 4,
           maxHeight: "100%",
           overflowY: "scroll",
         }}
@@ -544,7 +444,7 @@ function Chat() {
           let islast = false;
 
           if (message.typing) {
-            messageDelay += 2000;
+            messageDelay += MESSAGE_DELAY;
           }
 
           if (key === displayedMessages.length - 1) {

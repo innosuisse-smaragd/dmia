@@ -7,12 +7,14 @@ function TasksList() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    let interval = setInterval(() => {
-      const fetchTasksData = async () => {
-        const response = await fetchTasks();
-        setTasks(response);
-      };
+    const fetchTasksData = async () => {
+      const response = await fetchTasks();
+      setTasks(response);
+    };
 
+    fetchTasksData();
+
+    let interval = setInterval(() => {
       fetchTasksData();
     }, 30000);
 
