@@ -1,3 +1,20 @@
+const findValueCoding = (questions, answerText, linkId) => {
+  console.log("answer", answerText);
+
+  const question = questions.find((q) => q.linkId === linkId);
+
+  console.log("question", question);
+
+  const valueCoding = question.answerOption.find((option) => {
+    console.log(option);
+    return option.valueCoding.display === answerText;
+  });
+
+  console.log("valueCoding", valueCoding);
+
+  return valueCoding;
+};
+
 export const generateQuestionnaireResponse = (
   questionnaire,
   questions,
@@ -18,11 +35,23 @@ export const generateQuestionnaireResponse = (
         questionItem.answer.push({ valueString: answer.text });
       } else if (question.type === "choice") {
         if (question.repeats === false) {
-          questionItem.answer.push({ valueCoding: { display: answer.text } });
-        } else {
-          answer.text.forEach((a) =>
-            questionItem.answer.push({ valueCoding: { display: a } })
+          const valueCoding = findValueCoding(
+            questions,
+            answer.text,
+            answer.questionLinkId
           );
+          questionItem.answer.push(valueCoding);
+        } else {
+          answer.text.forEach((a) => {
+            {
+              const valueCoding = findValueCoding(
+                questions,
+                a,
+                answer.questionLinkId
+              );
+              questionItem.answer.push(valueCoding);
+            }
+          });
         }
       } else if (question.type === "integer") {
         questionItem.answer.push({ valueInteger: parseInt(answer.text) });
@@ -62,6 +91,8 @@ export const generateQuestionnaireResponse = (
       },
     ],
   };
+
+  console.log("Response", questionnaireResponse);
 
   return questionnaireResponse;
 };
