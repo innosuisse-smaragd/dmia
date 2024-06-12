@@ -63,11 +63,7 @@ function ReviewRoute() {
       username,
       password: task.contained[0].birthDate,
     });
-    postQuestionnaireResponse(
-      questionnaireResponse,
-      task.id,
-      authToken.data.accessToken
-    );
+    postQuestionnaireResponse({}, task.id, authToken.data.accessToken);
 
     postResponse(questionnaireResponse, responseEndpoint);
 
