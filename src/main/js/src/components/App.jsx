@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import ChatRoute from "../routes/ChatRoute";
 import HomeRoute from "../routes/HomeRoute";
-import ReviewRoute from "../routes/ReviewRoute";
+import ReviewRoute from "../routes/review-route/ReviewRoute";
 import EndRoute from "../routes/EndRoute";
 
 function App() {

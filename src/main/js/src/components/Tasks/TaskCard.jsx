@@ -38,6 +38,8 @@ function TaskCard({ task }) {
       handleItemType(item);
     });
 
+    newQuestionnaire[newQuestionnaire.length - 1].type = "final";
+
     navigate("/chat", {
       state: { newQuestionnaire, serverQuestionnaire, task },
     });
