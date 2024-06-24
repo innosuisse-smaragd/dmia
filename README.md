@@ -55,6 +55,18 @@ mvn clean install
 
 After the command executed, the app 'dmia-X-X-X-SHAPSHOT.war' is built and can be found in the target/ folder.
 
+## Docker
+A docker container for the project can be created by running the following command from the root of the project :
+```
+.\mvnw spring-boot:build-image
+```
+
+This will create a container named dmia. This container should use port 8081. To run it you can use the following command
+
+```
+docker run -it -p 8081:8081 dmia:0.0.1-SNAPSHOT
+```
+
 ## Deploy to Tomcat (local)
 As requested, the app needs to be deployed on a tomcat server. To do so, follow these steps:
 
